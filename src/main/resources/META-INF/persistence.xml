@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE persistence [
+        <!ELEMENT persistence (persistence-unit)*>
+        <!ATTLIST persistence
+                xmlns CDATA #REQUIRED
+                xmlns:xsi CDATA #REQUIRED
+                xsi:schemaLocation CDATA #REQUIRED
+                version CDATA #REQUIRED>
+        <!ELEMENT persistence-unit (jta-data-source|exclude-unlisted-classes|properties)*>
+        <!ATTLIST persistence-unit
+                name CDATA #REQUIRED
+                transaction-type CDATA #REQUIRED>
+        <!ELEMENT jta-data-source (#PCDATA)>
+        <!ELEMENT exclude-unlisted-classes (#PCDATA)>
+        <!ELEMENT properties (property)*>
+        <!ELEMENT property (#PCDATA)>
+        <!ATTLIST property
+                name CDATA #REQUIRED
+                value CDATA #REQUIRED>
+        ]>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+    <!-- Persistence Unit Definition -->
+    <persistence-unit name="BTOnlineUtilityPU" transaction-type="JTA">
+        <!-- JTA data source reference must be the same as registered in WildFly -->
+        <jta-data-source>java:/HealthSurveyDB</jta-data-source>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql:http://localhost:3306/BTOnlineUtility" />
+            <property name="javax.persistence.jdbc.user" value="root" />
+            <property name="javax.persistence.jdbc.password" value="CSD@mysql-1872" />
+            <property name="javax.persistence.schema-generation.database.action" value="none"/>
+        </properties>
+    </persistence-unit>
+</persistence>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  - Created by Osman Balci on 2021.6.1
+  - Copyright © 2021 Osman Balci and Rob Guldi. All rights reserved.
+  -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<!-- Do not enter tags before the composition line since they are ignored by JSF -->
+
+<!-- This page is constructed based on the siteTemplate -->
+<ui:composition template="/template/siteTemplate.xhtml">
+
+    <ui:define name="title">
+        <!-- Set the page title -->
+        <h:outputText value="Surveys Taken" />
+    </ui:define>
+
+    <!-- Create the content for this page below -->
+    <ui:define name="editableContent">
+        <div align="center">
+            <h1> Surveys Taken</h1>
+            <h:form id="UserSurveyListForm">
+
+                <p:panel header="List of All Users">
+
+                    <p:dataTable id="datalist" value="#{allUserController.allUsers}" var="user"
+                                 selectionMode="single" selection="#{allUserController.selected}"
+                                 reflow="true"
+                                 paginator="true"
+                                 rowKey="#{user.id}"
+                                 rows="5"
+                                 rowsPerPageTemplate="5,10,20,30,40,50"
+                                 class="dataTable">
+
+                        <p:ajax event="rowSelect"   update="viewButton"/>
+                        <p:ajax event="rowUnselect" update="viewButton"/>
+
+                        <!--
+                        ********************************
+                        *       User Photo column      *
+                        ********************************
+                        -->
+                        <p:column headerText="User Photo" style="text-align:center; width:80px;">
+                            <!--
+                            Display the user's photo in a small circle. The cache="false" option
+                            enables immediate display of a newly uploaded photo without using cache.
+                            -->
+                            <p:graphicImage cache="false" class="smallProfilePhoto" value="#{userController.userPhotoById(user)}" />
+                        </p:column>
+
+                        <!--
+                        ********************************
+                        *    DB Primary Key column     *
+                        ********************************
+                        -->
+                        <p:column headerText="First Name" style="text-align:center; width:50px;">
+                            <h:outputText value="#{user.firstName}"/>
+                        </p:column>
+
+                        <!--
+                        ********************************
+                        *      Date Taken column       *
+                        ********************************
+                        -->
+                        <p:column sortBy="#{user.lastName}" headerText="Last Name" style="text-align:center; width:100px;">
+                            <h:outputText value="#{user.lastName}" />
+                        </p:column>
+
+                        <!--
+                        ********************************
+                        *      Date Taken column       *
+                        ********************************
+                        -->
+                        <p:column sortBy="#{user.username}" headerText="Username" style="text-align:center; width:100px;">
+                            <h:outputText value="#{user.username}" />
+                        </p:column>
+
+                        <!--
+                        ********************************
+                        *           Footer             *
+                        ********************************
+                        -->
+                        <f:facet name="footer">
+                            <div align="center">
+                                <!-- 
+                                ===========
+                                VIEW Button
+                                ===========
+                                -->
+                                <p:commandButton id="viewButton" value="View Details" icon="fas fa-eye" styleClass="rounded-button"
+                                                 action="/userSurvey/SurveyDetails?faces-redirect=true"
+                                                 disabled="#{empty userSurveyController.selected}"/>
+                            </div>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+        </div>
+
+        <!--
+        ==================================================================
+        Dialog for Security Question and Answer for Survey Deletion
+        ==================================================================
+        -->
+        <p:dialog position="center center" id="SecurityQuestionDialog" widgetVar="SecurityQuestionDialog"
+                  modal="true" resizable="false" appendTo="@(body)" header="Security Question"
+                  showEffect="blind" hideEffect="fade" >
+            <!--
+            Various effect options are available when displaying and closing p:dialog or p:confirmDialog.
+            You can apply a showEffect and a hideEffect option listed below:
+            ******************************************************************
+            |   blind, bounce, clip, drop, explode, fade, fold, highlight,   |
+            |   puff, pulsate, scale, shake, size, slide, and transfer.      |
+            ******************************************************************
+            -->
+            <h:form id="securityQuestionForm">
+                <fieldset>
+                    <div style="margin-bottom:20px">
+                        <p:outputLabel for="answer" value="#{userController.signedInUser.securityQuestion}"/>
+                    </div>
+
+                    <div style="margin-bottom:10px">
+                        <p:inputText id="answer" value="#{userSurveyController.answerToSecurityQuestion}"
+                                     required="true" requiredMessage="Please enter your answer!"
+                                     class="inputTextField" />
+                    </div>
+
+                    <br/>
+                    <div align="center">
+                        <!--
+                        ================================
+                        |         SUBMIT Button        |
+                        ================================
+                        -->
+                        <p:commandButton id="Submit" value="Submit" ajax="false" icon="fas fa-arrow-up" styleClass="rounded-button"
+                                         actionListener="#{userSurveyController.securityAnswerSubmit()}"
+                                         update=":UserSurveyListForm" oncomplete="PF('SecurityQuestionDialog').hide()"/>
+                        &nbsp;
+                        <!--
+                        ================================
+                        |         CANCEL Button        |
+                        ================================
+                        -->
+                        <p:button outcome="/userSurvey/SurveysTaken.xhtml"
+                                  value="Cancel" icon="fas fa-ban" styleClass="ui-button-outlined" />
+                    </div>
+                    <br />
+                </fieldset>
+            </h:form>
+        </p:dialog>
+    </ui:define>
+</ui:composition>
+<!-- Do not enter tags after the composition line since they are ignored by JSF -->
+</html>
