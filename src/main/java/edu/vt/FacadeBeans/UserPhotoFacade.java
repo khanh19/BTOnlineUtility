@@ -1,6 +1,6 @@
 /*
  * Created by Osman Balci on 2021.12.23
- * Copyright © 2021 Osman Balci and Rob Guldi. All rights reserved.
+ * Copyright © 2021 Osman Balci, Rob Guldi, and Connor Ostrander. All rights reserved.
  */
 package edu.vt.FacadeBeans;
 

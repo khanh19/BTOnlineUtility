@@ -1,6 +1,6 @@
 /*
  * Created by Rob Guldi on 2022.11.29
- * Copyright © 2022 Robert Guldi. All rights reserved.
+ * Copyright © 2022 Robert Guldi and Connor Ostrander. All rights reserved.
  */
 package edu.vt.EntityBeans;
 
