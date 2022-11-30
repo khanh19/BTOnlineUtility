@@ -1,7 +1,7 @@
 <component name="CopyrightManager">
-  <settings default="Pham Copyright Notice">
+  <settings default="Guldi Copyright Notice">
     <module2copyright>
-      <element module="All" copyright="Pham Copyright Notice" />
+      <element module="All" copyright="Guldi Copyright Notice" />
     </module2copyright>
   </settings>
 </component>
