@@ -11,7 +11,7 @@ public final class Constants {
     //---------------
 
     // Windows
-    public static final String PHOTOS_ABSOLUTE_PATH = "C:/Users/SWAT Loaner/DocRoot/BTStorage/";
+    public static final String PHOTOS_ABSOLUTE_PATH = "/Users/apple/Docroot/BTStorage/PhotoStorage";
 
     // Unix (macOS) or Linux
 //    public static final String PHOTOS_ABSOLUTE_PATH = "/Users/Balci/DocRoot/BTStorage/";
@@ -399,5 +399,4 @@ public final class Constants {
                     "North Franklin/Cambria Nbnd",
                     "N Franklin/Graham Sbnd"
             };
-
 }

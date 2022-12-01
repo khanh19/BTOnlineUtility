@@ -18,7 +18,7 @@
             <tr>
                 <!--
                 **********************************
-                Column 1 (Left): PublicVideos Logo Image
+                Column 1 (Left): Logo Image
                 **********************************
                 -->
                 <td align="left" valign="middle" style="width:154px;">
@@ -27,9 +27,9 @@
                     Column width = Logo Image Width
                     -->
                     <h:link outcome="/index">
-                        <img src="#{resource['images:HealthSurveyLogo.png']}"
+                        <img src="#{resource['images:BusLogo.png']}"
                              style="height:64px; width:auto; float:left; padding-left:10px; border:none;"
-                             alt="HealthSurvey Logo" />
+                             alt="BTOnlineUtility Logo" />
                     </h:link>
                 </td>
 
@@ -66,20 +66,17 @@
                             <!-- Menu Options IF No User is Signed In -->
                             <c:choose>
                                 <c:when test="${userController.isAdmin()}">
-                                    <p:menuitem value="Generate Report" outcome="/userSurvey/SurveysReport" icon="fa fa-file-alt"/>
-                                    <p:menuitem value="List All Surveys" outcome="/userSurvey/SurveysList" icon="fa fa-list" />
-                                    <p:menuitem value="List All Users" outcome="/userSurvey/UsersList" icon="fa fa-list"/>
+                                    <p:menuitem value="Operator Information" outcome="/OperatorInformation/OpInf.xhtml" icon="fa fa-list"/>
 
                                 </c:when>
                                 <c:when test="#{userController.userIsSignedIn() == false}">
                                     <p:menuitem value="Sign In" outcome="/signIn/SignIn" icon="fas fa-sign-in-alt" />
                                     <p:menuitem value="Create Account" outcome="/userAccount/CreateAccount" icon="fas fa-user-plus" />
-                                    <p:menuitem value="Take Survey" outcome="/signIn/SignIn" icon="fas fa-pencil-alt"/>
                                     <p:menuitem value="Stops" outcome="/BTApiSearch/Search.xhtml" icon="fas fa-pencil-alt"/>
+                                    <p:menuitem value="View Routes" outcome="/routes/RoutesView" icon="fas fa-pencil-alt"/>
                                 </c:when>
                                 <c:otherwise>
-                                    <p:menuitem value="Take Survey" outcome="/userSurvey/TakeSurvey" icon="fas fa-pencil-alt"/>
-                                    <p:menuitem value="Surveys Taken" outcome="/userSurvey/SurveysTaken" icon="fas fa-check" />
+                                    <p:menuitem value="View Routes" outcome="/routes/RoutesView" icon="fas fa-pencil-alt"/>
                                 </c:otherwise>
                             </c:choose>
                             <c:if test="#{userController.userIsSignedIn() == true}">
