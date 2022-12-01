@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  - Created by Shrenik Peddibhotla on 2022.10.17
+  - based on code written by Osman Balci
+  - Copyright © 2022 Shrenik Peddibhotla. All rights reserved.
+  -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<!-- This page is constructed based on the siteTemplate -->
+<ui:composition template="/template/siteTemplate.xhtml">
+
+    <ui:define name="title">
+        <!-- Set the page title -->
+        <h:outputText value="Stops Search" />
+    </ui:define>
+
+    <!-- Create the content for this page below -->
+    <ui:define name="editableContent">
+
+        <h:form id="BTAPISearchForm">
+            <div align="center">
+
+                <br /><br />
+                <span class="headingText">Stops Search</span>
+                <br /><br />
+                <table width="80%" border="1" align="center" cellpadding="5" cellspacing="0">
+                    <tbody>
+                    <tr>
+                        <th width="60" nowrap="nowrap" scope="col">Type</th>
+                        <th scope="col">Description</th>
+                        <th width="200" scope="col">Search</th>
+                    </tr>
+                    <tr>
+                        <td width="60" align="center" nowrap="nowrap">1</td>
+                        <td align="center">Search Stops By Number</td>
+                        <td width="200" align="center">
+                            <p:commandButton value="Search Type 1" icon="fas fa-search" styleClass="rounded-button"
+                                             update=":BTSearchDlg1" oncomplete="PF('BTSearchDialog1').show()" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="60" align="center" nowrap="nowrap">2</td>
+                        <td align="center">Search Stops By Name</td>
+                        <td width="200" align="center">
+                            <p:commandButton value="Search Type 2" icon="fas fa-search" styleClass="rounded-button"
+                                             update=":BTSearchDlg2" oncomplete="PF('BTSearchDialog2').show()" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="60" align="center" nowrap="nowrap">3</td>
+                        <td align="center">Search Stops by Dropdown</td>
+                        <td width="200" align="center">
+                            <p:commandButton value="Search Type 3" icon="fas fa-search" styleClass="rounded-button"
+                                             update=":BTSearchDlg3" oncomplete="PF('BTSearchDialog3').show()" />
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br /><br />
+            </div>
+        </h:form>
+
+        <!--
+        **************************************
+        Dialog pop-up window for Type 1 Search
+        **************************************
+        -->
+        <p:dialog position="center center" id="BTSearchDlg1" widgetVar="BTSearchDialog1" modal="true" width="50%"
+                   appendTo="@(body)" header="Search by Number">
+
+            <h:form id="BTSearchForm1">
+                <p:panel>
+                    <h:panelGroup>
+                        <p:panelGrid columns="2" columnClasses="panelGridColumn1, panelGridColumn2" >
+                            <p:outputLabel value="Search by Number: " for="number"/>
+                            <p:inputText id="number" value="#{btAPIController.numberQ}" placeholder="Enter number"
+                                         required="true" requiredMessage="Please enter a number!"/>
+                        </p:panelGrid>
+                    </h:panelGroup>
+
+                    <h:panelGroup>
+                        <br/><br/>
+                        <div align="center">
+                            <!-- SUBMIT button -->
+                            <p:commandButton value="Submit" icon="fas fa-arrow-up" styleClass="rounded-button"
+                                             ajax="false" action="#{btAPIController.search(1)}"/>
+                            &nbsp;
+                            <!-- CANCEL button -->
+                            <p:commandButton value="Cancel" icon="fas fa-ban" styleClass="ui-button-outlined"
+                                             onclick="PF('BTSearchDialog1').hide()"/>
+                        </div>
+                    </h:panelGroup>
+                </p:panel>
+            </h:form>
+        </p:dialog>
+
+        <!--
+        **************************************
+        Dialog pop-up window for Type 3 Search
+        **************************************
+        -->
+        <p:dialog position="center center" id="BTSearchDlg2" widgetVar="BTSearchDialog2" modal="true" width="50%"
+                  appendTo="@(body)" header="Search by Name">
+
+            <h:form id="BTSearchForm3">
+                <p:panel>
+                    <h:panelGroup>
+                        <p:panelGrid columns="2" columnClasses="panelGridColumn1, panelGridColumn2" >
+                            <p:outputLabel value="Search by Name: " for="name"/>
+                            <p:inputText id="name" value="#{btAPIController.nameQ}" placeholder="Enter name"
+                                         required="true" requiredMessage="Please enter a name!"/>
+                        </p:panelGrid>
+                    </h:panelGroup>
+
+                    <h:panelGroup>
+                        <br/><br/>
+                        <div align="center">
+                            <!-- SUBMIT button -->
+                            <p:commandButton value="Submit" icon="fas fa-arrow-up" styleClass="rounded-button"
+                                             ajax="false" action="#{btAPIController.search(2)}"/>
+                            &nbsp;
+                            <!-- CANCEL button -->
+                            <p:commandButton value="Cancel" icon="fas fa-ban" styleClass="ui-button-outlined"
+                                             onclick="PF('BTSearchDialog2').hide()"/>
+                        </div>
+                    </h:panelGroup>
+                </p:panel>
+            </h:form>
+        </p:dialog>
+
+        <!--
+        **************************************
+        Dialog pop-up window for Type 2 Search
+        **************************************
+        -->
+        <p:dialog position="center center" id="BTSearchDlg3" widgetVar="BTSearchDialog3" modal="true" width="50%"
+                  appendTo="@(body)" header="Search By Dropdown">
+
+            <h:form id="BTSearchForm3">
+                <p:panel>
+                    <h:panelGroup>
+                        <p:outputLabel value="BT Category:" for="category" />
+                        <p:selectOneMenu id="category" value="#{btAPIController.categoryQ}"
+                                         required="true" requiredMessage="Please select a BT Category!" >
+                            <f:selectItem itemLabel="Newman Library" itemValue="Newman Library"/>
+                            <f:selectItem itemLabel="Burruss Hall" itemValue="Burruss Hall"/>
+                            <f:selectItem itemLabel="Davidson Hall" itemValue="Davidson Hall"/>
+                            <f:selectItem itemLabel="West Campus/Perry Nbnd" itemValue="West Campus/Perry Nbnd"/>
+                            <f:selectItem itemLabel="Old Security Bldg" itemValue="Old Security Bldg"/>
+                            <f:selectItem itemLabel="Stanger/Old Turner Wbnd" itemValue="Stanger/Old Turner Wbnd"/>
+                            <f:selectItem itemLabel="Hutcheson Hall" itemValue="Hutcheson Hall"/>
+                            <f:selectItem itemLabel="War Memorial Hall" itemValue="War Memorial Hall"/>
+                            <f:selectItem itemLabel="Squires Ebnd" itemValue="Squires Ebnd"/>
+                            <f:selectItem itemLabel="Alumni Mall Ebnd" itemValue="Alumni Mall Ebnd"/>
+                            <f:selectItem itemLabel="Alumni Mall Wbnd" itemValue="Alumni Mall Wbnd"/>
+                            <f:selectItem itemLabel="Squires Wbnd" itemValue="Squires Wbnd"/>
+                            <f:selectItem itemLabel="Torgersen Hall" itemValue="Torgersen Hall"/>
+                            <f:selectItem itemLabel="Wright House" itemValue="Wright House"/>
+                            <f:selectItem itemLabel="Litton Reaves Hall" itemValue="Litton Reaves Hall"/>
+                            <f:selectItem itemLabel="Overflow Lot Wbnd" itemValue="Overflow Lot Wbnd"/>
+                            <f:selectItem itemLabel="Oak Lane North" itemValue="Oak Lane North"/>
+                            <f:selectItem itemLabel="Oak Lane South" itemValue="Oak Lane South"/>
+                            <f:selectItem itemLabel="Overflow Lot Ebnd" itemValue="Overflow Lot Ebnd"/>
+                            <f:selectItem itemLabel="I Lot/Cage Sbnd" itemValue="I Lot/Cage Sbnd"/>
+                            <f:selectItem itemLabel="Food Science Bldg" itemValue="Food Science Bldg"/>
+                            <f:selectItem itemLabel="McComas Hall" itemValue="McComas Hall"/>
+                            <f:selectItem itemLabel="Cassell Coliseum" itemValue="Cassell Coliseum"/>
+                            <f:selectItem itemLabel="Tennis Courts" itemValue="Tennis Courts"/>
+                            <f:selectItem itemLabel="Harper Hall" itemValue="Harper Hall"/>
+                            <f:selectItem itemLabel="Lane Stadium S Endzone Sbnd" itemValue="Lane Stadium S Endzone Sbnd"/>
+                            <f:selectItem itemLabel="Lane Stadium S Endzone Nbnd" itemValue="Lane Stadium S Endzone Nbnd"/>
+                            <f:selectItem itemLabel="Coliseum Parking Lot Sbnd" itemValue="Coliseum Parking Lot Sbnd"/>
+                            <f:selectItem itemLabel="Oak Lane Nbnd" itemValue="Oak Lane Nbnd"/>
+                            <f:selectItem itemLabel="Bioinfomatics Bldg" itemValue="Bioinfomatics Bldg"/>
+                            <f:selectItem itemLabel="Life Sciences 1 Bldg" itemValue="Life Sciences 1 Bldg"/>
+                            <f:selectItem itemLabel="Smithfield Lot" itemValue="Smithfield Lot"/>
+                            <f:selectItem itemLabel="Smithfield/Duck Pond Sbnd" itemValue="Smithfield/Duck Pond Sbnd"/>
+                            <f:selectItem itemLabel="Cage/Smithfield Ebnd" itemValue="Cage/Smithfield Ebnd"/>
+                            <f:selectItem itemLabel="Cage/Duck Pond Ebnd" itemValue="Cage/Duck Pond Ebnd"/>
+                            <f:selectItem itemLabel="Cage/Duck Pond Wbnd" itemValue="Cage/Duck Pond Wbnd"/>
+                            <f:selectItem itemLabel="Cage/Smithfield Wbnd" itemValue="Cage/Smithfield Wbnd"/>
+                            <f:selectItem itemLabel="Prices Fork/Old Glade Wbnd" itemValue="Prices Fork/Old Glade Wbnd"/>
+                            <f:selectItem itemLabel="Vet School Wbnd" itemValue="Vet School Wbnd"/>
+                            <f:selectItem itemLabel="Prices Fork/Plantation Wbnd" itemValue="Prices Fork/Plantation Wbnd"/>
+                        </p:selectOneMenu>
+                    </h:panelGroup>
+                    <h:panelGroup>
+                        <br/><br/>
+                        <div align="center">
+                            <!-- SUBMIT button -->
+                            <p:commandButton value="Submit" icon="fas fa-arrow-up" styleClass="rounded-button"
+                                             ajax="false" action="#{btAPIController.search(3)}"/>
+                            &nbsp;
+                            <!-- CANCEL button -->
+                            <p:commandButton value="Cancel" icon="fas fa-ban" styleClass="ui-button-outlined"
+                                             onclick="PF('BTSearchDialog3').hide()"/>
+                        </div>
+                    </h:panelGroup>
+                </p:panel>
+            </h:form>
+        </p:dialog>
+
+
+
+
+
+    </ui:define>
+</ui:composition>
+</html>

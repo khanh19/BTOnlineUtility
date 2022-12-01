@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  - Created by Shrenik Peddibhotla on 2022.10.17
+  - based on code written by Osman Balci
+  - Copyright © 2022 Shrenik Peddibhotla. All rights reserved.
+  -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<!-- This page is constructed based on the siteTemplate -->
+<ui:composition template="/template/siteTemplate.xhtml">
+
+    <ui:define name="title">
+        <!-- Set the page title -->
+        <h:outputText value="Stop Results" />
+    </ui:define>
+
+    <!-- Create the content for this page below -->
+    <ui:define name="editableContent">
+
+        <!-- In case of JSF validation error, set 'selected' to null in btAPIController -->
+        <c:if test="#{facesContext.validationFailed}">
+            ${btAPIController.unselect()}
+        </c:if>
+
+        <!-- Set 'selected' to null in btAPIController when the user refreshes / reloads this JSF page -->
+        <f:metadata>
+            <f:viewAction action="#{btAPIController.unselect()}" rendered="#{facesContext.postback}" />
+        </f:metadata>
+
+        <div align="center">
+            <h:form id="BTAPIListForm">
+            <p:panel header="BT API Search Results">
+                <p:dataTable id="datalist"
+                             value="#{btAPIController.btsFound}"
+                             var="aBT"
+                             widgetVar="BTsDataTable"
+                             selectionMode="single"
+                             selection="#{btAPIController.selected}"
+                             reflow="true"
+                             showGridlines="true"
+                             paginator="true"
+                             rowKey="#{aBT.id}"
+                             rows="5"
+                             rowsPerPageTemplate="5,10,20,30,30,50,70,90"
+                             emptyMessage="No records found.">
+
+                    <p:ajax event="rowSelect"
+                            update="backButton"/>
+                    <p:ajax event="rowUnselect"
+                            update="backButton"/>
+
+
+
+                    <!--
+                    ********************
+                    *   BT NAME   *
+                    ********************
+                    -->
+                    <p:column headerText="Name" sortBy="#{aBT.name}" style="width: 100px; vertical-align: top">
+                        <!-- Clicking the bt name in the data table displays the bt's website -->
+                        <h:outputText value="#{aBT.name}"/>
+                    </p:column>
+
+
+
+                    <!--
+                    ******************************
+                    *   BT Number   *
+                    ******************************
+                    -->
+                    <p:column headerText="Number " sortBy="#{aBT.number}"
+                              style="width: 100px; text-align: center; vertical-align: top">
+                        <h:outputText value="#{aBT.number}"/>
+                    </p:column>
+
+                    <!--
+                    ******************************
+                    *   BT Number   *
+                    ******************************
+                    -->
+                    <p:column headerText="Routes" sortBy="#{aBT.routes}"
+                              style="width: 100px; text-align: center; vertical-align: top">
+                        <h:outputText value="#{aBT.routes}"/>
+                    </p:column>
+
+                    <!--
+                   ******************************
+                   *   BT Number   *
+                   ******************************
+                   -->
+                    <p:column headerText="Get Directions" sortBy="#{aBT.latitude}"
+                              style="width: 100px; text-align: center; vertical-align: top">
+                        <a href="https://https://www.google.com/maps/@#{aBT.latitude},#{aBT.longitude},15z" target="_blank" style="color:blue">#{aBT.longitude},#{aBT.latitude}</a>
+                    </p:column>
+
+                    <!--
+                    *************************
+                    *   Data Table Footer   *
+                    *************************
+                    -->
+                    <f:facet name="footer">
+                        <div align="center">
+                            <!-- These command buttons require id since they are referenced to be activated or deactivated -->
+                            <p:commandButton value="Add to Favorites" icon="fas fa-globe" styleClass="rounded-button"
+                                             ajax="false" action="#{btAController.addToFavorites()}" />
+                            <!-- GO BACK button -->
+                            <p:button id="backButton" icon="fas fa-arrow-left" styleClass="ui-button-outlined"
+                                      outcome="/BTApiSearch/Search" value="Go Back"/>
+                        </div>
+                    </f:facet>
+                </p:dataTable>
+
+            </p:panel>
+        </h:form>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>
