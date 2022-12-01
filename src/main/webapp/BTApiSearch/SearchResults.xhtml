@@ -1,11 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!--
-  - Created by Shrenik Peddibhotla on 2022.10.17
-  - based on code written by Osman Balci
-  - Copyright © 2022 Shrenik Peddibhotla. All rights reserved.
+  - Created by Connor Ostrander on 2022.10.9
+  - Copyright © 2022 Connor Ostrander. All rights reserved.
   -->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -15,7 +13,6 @@
 
 <!-- This page is constructed based on the siteTemplate -->
 <ui:composition template="/template/siteTemplate.xhtml">
-
     <ui:define name="title">
         <!-- Set the page title -->
         <h:outputText value="Stop Results" />
@@ -24,102 +21,125 @@
     <!-- Create the content for this page below -->
     <ui:define name="editableContent">
 
-        <!-- In case of JSF validation error, set 'selected' to null in btAPIController -->
+        <!-- In case of JSF validation error, set 'selected' to null in cocktailController -->
         <c:if test="#{facesContext.validationFailed}">
             ${btAPIController.unselect()}
         </c:if>
-
-        <!-- Set 'selected' to null in btAPIController when the user refreshes / reloads this JSF page -->
+        <!-- Set 'selected' to null in cocktailController when the user refreshes / reloads this JSF page -->
         <f:metadata>
             <f:viewAction action="#{btAPIController.unselect()}" rendered="#{facesContext.postback}" />
         </f:metadata>
 
         <div align="center">
-            <h:form id="BTAPIListForm">
-            <p:panel header="BT API Search Results">
-                <p:dataTable id="datalist"
-                             value="#{btAPIController.btsFound}"
-                             var="aBT"
-                             widgetVar="BTsDataTable"
-                             selectionMode="single"
-                             selection="#{btAPIController.selected}"
-                             reflow="true"
-                             showGridlines="true"
-                             paginator="true"
-                             rowKey="#{aBT.id}"
-                             rows="5"
-                             rowsPerPageTemplate="5,10,20,30,30,50,70,90"
-                             emptyMessage="No records found.">
-
-                    <p:ajax event="rowSelect"
-                            update="backButton"/>
-                    <p:ajax event="rowUnselect"
-                            update="backButton"/>
+            <h:form id="BTListForm">
+                <p:panel header="BT API Search Results">
+                    <p:dataTable id="datalist"
+                                 value="#{btAPIController.stopSearchItems}"
+                                 var="aBT"
+                                 widgetVar="btDataTable"
+                                 selectionMode="single"
+                                 selection="#{btAPIController.selected}"
+                                 reflow="true"
+                                 showGridlines="true"
+                                 paginator="true"
+                                 rowKey="#{aBT.number}"
+                                 rows="5"
+                                 rowsPerPageTemplate="5,10,20,30,50,70,90"
+                                 emptyMessage="No records found." >
 
 
-
-                    <!--
-                    ********************
-                    *   BT NAME   *
-                    ********************
-                    -->
-                    <p:column headerText="Name" sortBy="#{aBT.name}" style="width: 100px; vertical-align: top">
-                        <!-- Clicking the bt name in the data table displays the bt's website -->
-                        <h:outputText value="#{aBT.name}"/>
-                    </p:column>
-
+                        <!--
+                        ********************
+                        *  BT Name   *
+                        ********************
+                        -->
+                        <p:column headerText="Stop Name" sortBy="#{aBT.name}"
+                                  style="width: 120px; text-align: left; vertical-align: top">
+                            <h:outputText value="#{aBT.name}"/>
+                        </p:column>
 
 
-                    <!--
-                    ******************************
-                    *   BT Number   *
-                    ******************************
-                    -->
-                    <p:column headerText="Number " sortBy="#{aBT.number}"
-                              style="width: 100px; text-align: center; vertical-align: top">
-                        <h:outputText value="#{aBT.number}"/>
-                    </p:column>
+                        <!--
+                        ***********************
+                        * BT type   *
+                        ***********************
+                        -->
+                        <p:column headerText="Stop Number" sortBy="#{aBT.number}"
+                                  style="width: 60px; text-align: center; vertical-align: top">
+                            <h:outputText value="#{aBT.number}" />
+                        </p:column>
 
-                    <!--
-                    ******************************
-                    *   BT Number   *
-                    ******************************
-                    -->
-                    <p:column headerText="Routes" sortBy="#{aBT.routes}"
-                              style="width: 100px; text-align: center; vertical-align: top">
-                        <h:outputText value="#{aBT.routes}"/>
-                    </p:column>
 
-                    <!--
-                   ******************************
-                   *   BT Number   *
-                   ******************************
-                   -->
-                    <p:column headerText="Get Directions" sortBy="#{aBT.latitude}"
-                              style="width: 100px; text-align: center; vertical-align: top">
-                        <a href="https://https://www.google.com/maps/@#{aBT.latitude},#{aBT.longitude},15z" target="_blank" style="color:blue">#{aBT.longitude},#{aBT.latitude}</a>
-                    </p:column>
+                        <!--
+                       ****************************
+                       *   BT Latitude   *
+                       ****************************
+                       -->
+                        <p:column headerText="Latitude"
+                                  style="width: 100px; vertical-align: top">
+                            <h:outputText value="#{aBT.latitude}"/>
+                        </p:column>
 
-                    <!--
-                    *************************
-                    *   Data Table Footer   *
-                    *************************
-                    -->
-                    <f:facet name="footer">
-                        <div align="center">
-                            <!-- These command buttons require id since they are referenced to be activated or deactivated -->
-                            <p:commandButton value="Add to Favorites" icon="fas fa-globe" styleClass="rounded-button"
-                                             ajax="false" action="#{btAController.addToFavorites()}" />
-                            <!-- GO BACK button -->
-                            <p:button id="backButton" icon="fas fa-arrow-left" styleClass="ui-button-outlined"
-                                      outcome="/BTApiSearch/Search" value="Go Back"/>
-                        </div>
-                    </f:facet>
-                </p:dataTable>
+                        <!--
+                        ****************************
+                        *   BT Longitude   *
+                        ****************************
+                        -->
+                        <p:column headerText="Longitude"
+                                  style="width: 100px; vertical-align: top">
+                            <h:outputText value="#{aBT.longitude}"/>
+                        </p:column>
 
-            </p:panel>
-        </h:form>
+
+
+                        <!--
+                        ****************************
+                        *   BT Latitude   *
+                        ****************************
+                        -->
+                        <p:column headerText="Routes"
+                                  style="width: 100px; vertical-align: top">
+                            <h:outputText value="#{aBT.routes}"/>
+                        </p:column>
+
+                        <p:column headerText="Get Directions"
+                                style="width: 120px; text-align: center; vertical-align: top">
+                            <a href="https://www.google.com/maps/dir/Current+Location/#{aBT.latitude},#{aBT.longitude}" target="_blank" style="color:blue">Get Directions</a>
+                        </p:column>
+
+                        <br /><br />
+
+                        <!--
+                        *************************
+                        *   Data Table Footer   *
+                        *************************
+                        -->
+                        <f:facet name="footer">
+                            <div align="center">
+                                <!-- These command buttons require id since they are referenced to be activated or deactivated -->
+                                <p:commandButton value="Export as CSV" icon="fas fa-file-csv" styleClass="rounded-button" ajax="false">
+                                    <!--
+                                    PrimeFaces p:dataExporter uses poi-ooxml-5.2.3.jar for exporting into Microsoft documents.
+                                    poi-ooxml-5.2.3.jar must be present in the WEB-INF/lib folder. .
+                                    I'm using CSV here instead of excel because the program is throwing an error every xlsx is used in the type.
+                                    This is the case even with the tutorial code and even with the professor's version of the companies tutorial.
+                                    -->
+                                    <p:dataExporter type="csv" target="datalist" fileName="Stops" />
+                                </p:commandButton>
+                                &nbsp;
+                                <!-- GO BACK button -->
+                                <p:button id="backButton" icon="fas fa-arrow-left" styleClass="ui-button-outlined"
+                                          outcome="/BTApiSearch/Search" value="Go Back"/>
+
+
+                            </div>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
         </div>
+
     </ui:define>
 </ui:composition>
 </html>

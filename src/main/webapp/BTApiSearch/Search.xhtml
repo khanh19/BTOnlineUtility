@@ -29,7 +29,7 @@
                 <br /><br />
                 <span class="headingText">Stops Search</span>
                 <br /><br />
-                <table width="80%" border="1" align="center" cellpadding="5" cellspacing="0">
+                <table width="60%" border="1" align="center" cellpadding="5" cellspacing="0">
                     <tbody>
                     <tr>
                         <th width="60" nowrap="nowrap" scope="col">Type</th>
@@ -108,7 +108,7 @@
         <p:dialog position="center center" id="BTSearchDlg2" widgetVar="BTSearchDialog2" modal="true" width="50%"
                   appendTo="@(body)" header="Search by Name">
 
-            <h:form id="BTSearchForm3">
+            <h:form id="BTSearchForm2">
                 <p:panel>
                     <h:panelGroup>
                         <p:panelGrid columns="2" columnClasses="panelGridColumn1, panelGridColumn2" >
@@ -135,61 +135,26 @@
         </p:dialog>
 
         <!--
-        **************************************
-        Dialog pop-up window for Type 2 Search
-        **************************************
-        -->
-        <p:dialog position="center center" id="BTSearchDlg3" widgetVar="BTSearchDialog3" modal="true" width="50%"
-                  appendTo="@(body)" header="Search By Dropdown">
+      **************************************
+      Dialog pop-up window for Type 3 Search
+      **************************************
+      Search Open Brewery DB API by State Name
+      -->
+        <p:dialog id="BTSearchDlg3" header="Search Stop by DropDown" widgetVar="BTSearchDialog3"
+                  modal="true" position="center" appendTo="@(body)" width="60%"
+                  showEffect="slide" hideEffect="fade" responsive="true" >
 
             <h:form id="BTSearchForm3">
                 <p:panel>
                     <h:panelGroup>
-                        <p:outputLabel value="BT Category:" for="category" />
-                        <p:selectOneMenu id="category" value="#{btAPIController.categoryQ}"
-                                         required="true" requiredMessage="Please select a BT Category!" >
-                            <f:selectItem itemLabel="Newman Library" itemValue="Newman Library"/>
-                            <f:selectItem itemLabel="Burruss Hall" itemValue="Burruss Hall"/>
-                            <f:selectItem itemLabel="Davidson Hall" itemValue="Davidson Hall"/>
-                            <f:selectItem itemLabel="West Campus/Perry Nbnd" itemValue="West Campus/Perry Nbnd"/>
-                            <f:selectItem itemLabel="Old Security Bldg" itemValue="Old Security Bldg"/>
-                            <f:selectItem itemLabel="Stanger/Old Turner Wbnd" itemValue="Stanger/Old Turner Wbnd"/>
-                            <f:selectItem itemLabel="Hutcheson Hall" itemValue="Hutcheson Hall"/>
-                            <f:selectItem itemLabel="War Memorial Hall" itemValue="War Memorial Hall"/>
-                            <f:selectItem itemLabel="Squires Ebnd" itemValue="Squires Ebnd"/>
-                            <f:selectItem itemLabel="Alumni Mall Ebnd" itemValue="Alumni Mall Ebnd"/>
-                            <f:selectItem itemLabel="Alumni Mall Wbnd" itemValue="Alumni Mall Wbnd"/>
-                            <f:selectItem itemLabel="Squires Wbnd" itemValue="Squires Wbnd"/>
-                            <f:selectItem itemLabel="Torgersen Hall" itemValue="Torgersen Hall"/>
-                            <f:selectItem itemLabel="Wright House" itemValue="Wright House"/>
-                            <f:selectItem itemLabel="Litton Reaves Hall" itemValue="Litton Reaves Hall"/>
-                            <f:selectItem itemLabel="Overflow Lot Wbnd" itemValue="Overflow Lot Wbnd"/>
-                            <f:selectItem itemLabel="Oak Lane North" itemValue="Oak Lane North"/>
-                            <f:selectItem itemLabel="Oak Lane South" itemValue="Oak Lane South"/>
-                            <f:selectItem itemLabel="Overflow Lot Ebnd" itemValue="Overflow Lot Ebnd"/>
-                            <f:selectItem itemLabel="I Lot/Cage Sbnd" itemValue="I Lot/Cage Sbnd"/>
-                            <f:selectItem itemLabel="Food Science Bldg" itemValue="Food Science Bldg"/>
-                            <f:selectItem itemLabel="McComas Hall" itemValue="McComas Hall"/>
-                            <f:selectItem itemLabel="Cassell Coliseum" itemValue="Cassell Coliseum"/>
-                            <f:selectItem itemLabel="Tennis Courts" itemValue="Tennis Courts"/>
-                            <f:selectItem itemLabel="Harper Hall" itemValue="Harper Hall"/>
-                            <f:selectItem itemLabel="Lane Stadium S Endzone Sbnd" itemValue="Lane Stadium S Endzone Sbnd"/>
-                            <f:selectItem itemLabel="Lane Stadium S Endzone Nbnd" itemValue="Lane Stadium S Endzone Nbnd"/>
-                            <f:selectItem itemLabel="Coliseum Parking Lot Sbnd" itemValue="Coliseum Parking Lot Sbnd"/>
-                            <f:selectItem itemLabel="Oak Lane Nbnd" itemValue="Oak Lane Nbnd"/>
-                            <f:selectItem itemLabel="Bioinfomatics Bldg" itemValue="Bioinfomatics Bldg"/>
-                            <f:selectItem itemLabel="Life Sciences 1 Bldg" itemValue="Life Sciences 1 Bldg"/>
-                            <f:selectItem itemLabel="Smithfield Lot" itemValue="Smithfield Lot"/>
-                            <f:selectItem itemLabel="Smithfield/Duck Pond Sbnd" itemValue="Smithfield/Duck Pond Sbnd"/>
-                            <f:selectItem itemLabel="Cage/Smithfield Ebnd" itemValue="Cage/Smithfield Ebnd"/>
-                            <f:selectItem itemLabel="Cage/Duck Pond Ebnd" itemValue="Cage/Duck Pond Ebnd"/>
-                            <f:selectItem itemLabel="Cage/Duck Pond Wbnd" itemValue="Cage/Duck Pond Wbnd"/>
-                            <f:selectItem itemLabel="Cage/Smithfield Wbnd" itemValue="Cage/Smithfield Wbnd"/>
-                            <f:selectItem itemLabel="Prices Fork/Old Glade Wbnd" itemValue="Prices Fork/Old Glade Wbnd"/>
-                            <f:selectItem itemLabel="Vet School Wbnd" itemValue="Vet School Wbnd"/>
-                            <f:selectItem itemLabel="Prices Fork/Plantation Wbnd" itemValue="Prices Fork/Plantation Wbnd"/>
-                        </p:selectOneMenu>
+                        <p:panelGrid columns="2" columnClasses="panelGridColumn1, panelGridColumn2" >
+                            <p:outputLabel value="Select Stop Name:" for="nameQ" />
+                            <h:selectOneMenu id="nameQ" value="#{btAPIController.nameQ}" >
+                                <f:selectItems value="#{btAPIController.stopNames}" />
+                            </h:selectOneMenu>
+                        </p:panelGrid>
                     </h:panelGroup>
+
                     <h:panelGroup>
                         <br/><br/>
                         <div align="center">
@@ -200,11 +165,26 @@
                             <!-- CANCEL button -->
                             <p:commandButton value="Cancel" icon="fas fa-ban" styleClass="ui-button-outlined"
                                              onclick="PF('BTSearchDialog3').hide()"/>
+
+
+                            <a href="stops.csv" class="button" download="Stops.csv">Export All Stops to CSV</a>
+
                         </div>
                     </h:panelGroup>
                 </p:panel>
+
+
+
+
             </h:form>
+
+
+
+
+
         </p:dialog>
+
+
 
 
 
