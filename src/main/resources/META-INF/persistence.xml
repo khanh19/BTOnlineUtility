@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+  ~ Created by Rob Guldi on 2022.11.30
+  ~ Copyright © 2022 Robert Guldi. All rights reserved.
+  -->
+
 <!DOCTYPE persistence [
         <!ELEMENT persistence (persistence-unit)*>
         <!ATTLIST persistence
