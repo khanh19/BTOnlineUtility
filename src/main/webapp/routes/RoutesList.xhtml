@@ -24,7 +24,7 @@
     <!-- Create the content for this page below -->
     <ui:define name="editableContent">
 
-        <!-- In case of JSF validation error, set 'selected' to null in cocktailController -->
+        <!-- In case of JSF validation error, set 'selected' to null in routeController -->
         <c:if test="#{facesContext.validationFailed}">
             ${routeController.unselect()}
         </c:if>
@@ -37,7 +37,84 @@
         <div align="center">
             <h:form id="RouteListForm">
                 <p:panel header="List of Routes">
+                    <p:dataTable id="datalist"
+                                 value="#{routeController.listOfRoutes}"
+                                 var="aRoute"
+                                 widgetVar="routesDataTable"
+                                 selectionMode="single"
+                                 selection="#{routeController.selected}"
+                                 reflow="true"
+                                 showGridlines="true"
+                                 paginator="true"
+                                 rowKey="#{aRoute.id}"
+                                 rows="5"
+                                 rowsPerPageTemplate="5,10,20,30,50,70,90"
+                                 emptyMessage="No route found for the search query entered!">
 
+                        <p:ajax event="rowSelect"   update=""/>
+                        <p:ajax event="rowUnselect" update=""/>
+
+                        <!--
+                        *************************
+                        *   Data Table Header   *
+                        *************************
+                        -->
+                        <f:facet name="header">
+                            <div align="center">
+                                <p:inputText id="globalFilter" onkeyup="PF('routesDataTable').filter()" filterMatchMode="contains"
+                                             style="width: 250px"
+                                             placeholder="Enter Global Search Query" />
+                                &nbsp;
+                                <p:commandButton type="button" value="Clear All Filters" styleClass="ui-button-outlined"
+                                                 icon="fas fa-undo" onclick="PF('routesDataTable').clearFilters()" />
+                            </div>
+                        </f:facet>
+
+                        <!--
+                        ********************
+                        *  Route Name   *
+                        ********************
+                        -->
+                        <p:column headerText="Name" sortBy="#{aRoute.routeName}"
+                                  filterBy="#{aRoute.routeName}" filterMatchMode="contains"
+                                  style="width: 70px; text-align: left; vertical-align: top">
+                            <h:outputText value="#{aRoute.routeName}"/>
+                        </p:column>
+
+                        <!--
+                        ********************
+                        *  Start time   *
+                        ********************
+                        -->
+                        <p:column headerText="Start time" sortBy="#{aRoute.startTime}"
+                                  filterBy="#{aRoute.startTime}" filterMatchMode="contains"
+                                  style="width: 70px; text-align: left; vertical-align: top">
+                            <h:outputText value="#{aRoute.startTime}"/>
+                        </p:column>
+
+                        <!--
+                        ********************
+                        *  End time   *
+                        ********************
+                        -->
+                        <p:column headerText="End time" sortBy="#{aRoute.endTime}"
+                                  filterBy="#{aRoute.endTime}" filterMatchMode="contains"
+                                  style="width: 70px; text-align: left; vertical-align: top">
+                            <h:outputText value="#{aRoute.endTime}"/>
+                        </p:column>
+
+                        <!--
+                        ********************
+                        *  Days running   *
+                        ********************
+                        -->
+                        <p:column headerText="Days Running" sortBy="#{aRoute.daysRunning}"
+                                  filterBy="#{aRoute.daysRunning}" filterMatchMode="contains"
+                                  style="width: 70px; text-align: left; vertical-align: top">
+                            <h:outputText value="#{aRoute.daysRunning}"/>
+                        </p:column>
+
+                    </p:dataTable>
                 </p:panel>
             </h:form>
         </div>

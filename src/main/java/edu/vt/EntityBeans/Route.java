@@ -65,14 +65,12 @@ public class Route implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "start_time")
-    @Temporal(TemporalType.DATE)
-    private Date startTime;
+    private Time startTime;
 
     @Basic(optional = false)
     @NotNull
     @Column(name = "end_time")
-    @Temporal(TemporalType.DATE)
-    private Date endTime;
+    private Time endTime;
 
     @Basic(optional = false)
     @NotNull
@@ -143,16 +141,12 @@ public class Route implements Serializable {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(Time startTime) {
         this.startTime = startTime;
     }
 
     public Date getEndTime() {
         return endTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
     }
 
     public void setEndTime(Time endTime) {
