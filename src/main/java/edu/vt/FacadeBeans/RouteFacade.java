@@ -1,10 +1,12 @@
 /*
- * Created by Osman Balci on 2021.12.23
- * Copyright © 2021 Osman Balci, Rob Guldi, and Connor Ostrander. All rights reserved.
+ * Created by Osman Balci and Connor Ostrander on 2022.12.1
+ * Copyright © 2022 Osman Balci and Connor Ostrander. All rights reserved.
  */
+
 package edu.vt.FacadeBeans;
 
-import edu.vt.EntityBeans.UserPhoto;
+import edu.vt.EntityBeans.Route;
+import edu.vt.EntityBeans.User;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -13,7 +15,7 @@ import java.util.List;
 
 // @Stateless annotation implies that the conversational state with the client shall NOT be maintained.
 @Stateless
-public class UserPhotoFacade extends AbstractFacade<UserPhoto> {
+public class RouteFacade extends AbstractFacade<Route>{
     /*
     ---------------------------------------------------------------------------------------------
     The EntityManager is an API that enables database CRUD (Create Read Update Delete) operations
@@ -32,34 +34,38 @@ public class UserPhotoFacade extends AbstractFacade<UserPhoto> {
         return entityManager;
     }
 
-    /* 
+    /*
     This constructor method invokes its parent AbstractFacade's constructor method,
     which in turn initializes its entity class type T and entityClass instance variable.
      */
-    public UserPhotoFacade() {
-        super(UserPhoto.class);
+    public RouteFacade() {
+        super(Route.class);
     }
 
     /*
-     ***********************
-     *   Instance Method   *
-     ***********************
+     ************************
+     *   Instance Methods   *
+     ************************
      */
 
-    // Returns a list of object references of UserPhoto objects that belong to the
-    // User object whose primary key is primaryKey
-    public List<UserPhoto> findPhotosByUserPrimaryKey(Integer primaryKey) {
-        /*
-        The following @NamedQuery definition is given in UserPhoto entity class file:
-            @NamedQuery(name = "UserPhoto.findPhotosByUserDatabasePrimaryKey", query = "SELECT p FROM UserPhoto p WHERE p.userId.id = :primaryKey")
-
-        userId.id --> User object's database primary key
-        The following statement obtains the results from the named database query.
-         */
-
-        return (List<UserPhoto>) entityManager.createNamedQuery("UserPhoto.findPhotosByUserDatabasePrimaryKey")
-                .setParameter("primaryKey", primaryKey)
-                .getResultList();
+    // Returns the object reference of the Route object whose primary key is id
+    public Route getRoute(int id) {
+        // The find method is inherited from the parent AbstractFacade class
+        return entityManager.find(Route.class, id);
     }
-    
+
+    // Deletes the Route entity object whose primary key is id
+    public void deleteRoute(int id) {
+
+        // The find method is inherited from the parent AbstractFacade class
+        Route route = entityManager.find(Route.class, id);
+
+        // The remove method is inherited from the parent AbstractFacade class
+        entityManager.remove(route);
+    }
+
+    public List<Route> findAllRoutes() {
+        return (List<Route>) (entityManager.createNamedQuery("Route.findAll").getResultList());
+    }
+
 }

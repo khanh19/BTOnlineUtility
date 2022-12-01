@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+  ~ Created by Rob Guldi on 2022.11.30
+  ~ Copyright © 2022 Robert Guldi. All rights reserved.
+  -->
+
 <!DOCTYPE persistence [
         <!ELEMENT persistence (persistence-unit)*>
         <!ATTLIST persistence
@@ -25,7 +30,7 @@
     <!-- Persistence Unit Definition -->
     <persistence-unit name="BTOnlineUtilityPU" transaction-type="JTA">
         <!-- JTA data source reference must be the same as registered in WildFly -->
-        <jta-data-source>java:/HealthSurveyDB</jta-data-source>
+        <jta-data-source>java:/BTUtilityDB</jta-data-source>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />

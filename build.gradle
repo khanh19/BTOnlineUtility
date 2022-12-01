@@ -12,7 +12,7 @@ repositories {
 
     // flat filesystem directory containing the PrimeFaces JAR file
     flatDir {
-        dirs 'C:/Users/rober/IdeaProjects/BTOnlineUtility/src/main/webapp/WEB-INF/lib'
+        dirs '/Users/apple/Documents/Computer Science/CS4104TA/BTOnlineUtility/src/main/webapp/WEB-INF/lib'
     }
 }
 
