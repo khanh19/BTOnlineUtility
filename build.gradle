@@ -13,6 +13,7 @@ repositories {
     // flat filesystem directory containing the PrimeFaces JAR file
     flatDir {
         dirs 'C:/Users/rober/IdeaProjects/BTOnlineUtility/src/main/webapp/WEB-INF/lib'
+        dirs 'C:/Users/Swat Loaner/BTOnlineUtility/src/main/webapp/WEB-INF/lib'
     }
 }
 

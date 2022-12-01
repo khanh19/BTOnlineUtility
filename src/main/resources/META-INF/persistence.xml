@@ -25,7 +25,7 @@
     <!-- Persistence Unit Definition -->
     <persistence-unit name="BTOnlineUtilityPU" transaction-type="JTA">
         <!-- JTA data source reference must be the same as registered in WildFly -->
-        <jta-data-source>java:/HealthSurveyDB</jta-data-source>
+        <jta-data-source>java:/BTUtilityDB</jta-data-source>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
