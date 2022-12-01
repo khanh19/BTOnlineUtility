@@ -87,6 +87,34 @@ public class RouteController implements Serializable {
     ================
      */
 
+    /*
+     *************************************
+     *   Cancel and Display List.xhtml   *
+     *************************************
+     */
+    public String cancel() {
+        // Unselect previously selected route object if any
+        selected = null;
+        return "/routes/List?faces-redirect=true";
+    }
+
+    /*
+    ***************************************
+    DELETE Selected Route from the Database
+    ***************************************
+     */
+    public void destroy() {
+        Methods.preserveMessages();
+
+        persist(JsfUtil.PersistAction.DELETE,"Route was Successfully Deleted!");
+
+        if (!JsfUtil.isValidationFailed()) {
+            // No JSF validation error. The DELETE operation is successfully performed.
+            selected = null;           // Remove selection
+            listOfRoutes = null;    // Invalidate listOfRoutes to trigger re-query.
+        }
+    }
+
     public void unselect() {
         selected = null;
     }

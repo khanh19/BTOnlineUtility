@@ -10,6 +10,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 // The @Entity annotation designates this class as a JPA Entity class representing the UserSurvey table in the BevqDB database.
@@ -112,6 +115,7 @@ public class Route implements Serializable {
     @Column(name = "longitudes")
     private String longitudes;
 
+
     public Route() {
     }
 
@@ -145,12 +149,22 @@ public class Route implements Serializable {
         this.startTime = startTime;
     }
 
+    public void setStartTimeString(String startTime) throws ParseException {
+        DateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+        this.startTime = new java.sql.Time(formatter.parse(startTime).getTime());
+    }
+
     public Date getEndTime() {
         return endTime;
     }
 
     public void setEndTime(Time endTime) {
         this.endTime = endTime;
+    }
+
+    public void setEndTimeString(String endTime) throws ParseException {
+        DateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+        this.endTime = new java.sql.Time(formatter.parse(endTime).getTime());
     }
 
     public Integer getFrequency() {
