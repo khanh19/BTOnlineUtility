@@ -30,6 +30,8 @@ public class BTApiController implements Serializable {
     private String nameQ;
     private String numberQ;
 
+    private String routeQ;
+
 
     /*
     The @EJB annotation directs the EJB Container Manager to inject (store) the object reference of the
@@ -54,6 +56,8 @@ public class BTApiController implements Serializable {
 
     public String[] getStopNames() {return Constants.BUS_STOPS;}
 
+    public String[] getRouteNames() {return Constants.ROUTES;}
+
 
     public String getNameQ() {
         return nameQ;
@@ -61,6 +65,14 @@ public class BTApiController implements Serializable {
 
     public void setNameQ(String nameQ) {
         this.nameQ = nameQ;
+    }
+
+    public String getRouteQ() {
+        return routeQ;
+    }
+
+    public void setRouteQ(String routeQ) {
+        this.routeQ = routeQ;
     }
 
     public String getNumberQ() {
@@ -89,6 +101,17 @@ public class BTApiController implements Serializable {
                 case 3: // Search Type 3
                     // Search Open Brewery DB API by State Name
                     searchItems = stopFacade.nameQuery(nameQ);
+                    break;
+                case 4: // Search Type 3
+                    // Search Open Brewery DB API by State Name
+
+                    String[] route_bad = routeQ.split("-");
+
+                    routeQ = route_bad[0];
+
+                    routeQ = routeQ.trim();
+
+                    searchItems = stopFacade.routeQuery(routeQ);
                     break;
                 default:
                     Methods.showMessage("Fatal Error", "Search Type is Out of Range!",

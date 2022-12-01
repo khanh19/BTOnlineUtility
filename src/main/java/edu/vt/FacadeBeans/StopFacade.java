@@ -129,5 +129,12 @@ public class StopFacade extends AbstractFacade<Stop>{
         return stops;
     }
 
+    public List<Stop> routeQuery(String searchString) {
+        List<Stop> stops = new ArrayList<>();
+        String url = "http://100.26.154.75:8080/BTStopsAPI/api/btStops/routeContains/" + searchString;
+        createBreweriesFromUrl(url, stops);
+        return stops;
+    }
+
 
 }
