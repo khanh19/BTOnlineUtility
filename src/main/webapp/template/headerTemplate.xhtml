@@ -66,7 +66,7 @@
                             <!-- Menu Options IF No User is Signed In -->
                             <c:choose>
                                 <c:when test="${userController.isAdmin()}">
-                                    <p:menuitem value="List All Routes" outcome="/routes/routesList" icon="fa fa-list"/>
+                                    <p:menuitem value="List All Routes" outcome="/routes/RoutesList" icon="fa fa-list"/>
 
                                 </c:when>
                                 <c:when test="#{userController.userIsSignedIn() == false}">
@@ -75,7 +75,7 @@
                                     <p:menuitem value="View Routes" outcome="/signIn/SignIn" icon="fas fa-pencil-alt"/>
                                 </c:when>
                                 <c:otherwise>
-                                    <p:menuitem value="View Routes" outcome="/routes/routesView" icon="fas fa-pencil-alt"/>
+                                    <p:menuitem value="View Routes" outcome="/routes/RoutesView" icon="fas fa-pencil-alt"/>
                                 </c:otherwise>
                             </c:choose>
                             <c:if test="#{userController.userIsSignedIn() == true}">

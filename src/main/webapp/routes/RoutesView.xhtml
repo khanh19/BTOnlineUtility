@@ -20,5 +20,22 @@
         <h:outputText value="Routes View" />
     </ui:define>
 
+    <!-- Create the content for this page below -->
+    <ui:define name="editableContent">
+        <h:form id="RouteViewForm">
+            <div align="center">
+
+                <h:panelGrid columns="2" cellpadding="10" cellspacing="3">
+
+                    <p:outputLabel value="Selected Route: " style="font-style: italic" />
+                    <h:selectOneMenu value="#{routeController.routeName}" >
+                        <f:selectItems value="#{routeController.listOfRouteNames}" />
+                    </h:selectOneMenu>
+
+                </h:panelGrid>
+            </div>
+        </h:form>
+    </ui:define>
+
 </ui:composition>
 </html>
