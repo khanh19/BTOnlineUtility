@@ -34,6 +34,8 @@ public class RouteController implements Serializable {
 
     private Route selected;
 
+    private List<Route> listOfRoutes = null;
+
     /*
     The @EJB annotation directs the EJB Container Manager to inject (store) the object reference of the
     UserFacade bean into the instance variable 'userFacade' after it is instantiated at runtime.
@@ -71,11 +73,23 @@ public class RouteController implements Serializable {
         }
         return names;
     }
+
+    public List<Route> getListOfRoutes() {
+        if (listOfRoutes == null) {
+            listOfRoutes = routeFacade.findAllRoutes();
+        }
+        return listOfRoutes;
+    }
+
     /*
     ================
     Instance Methods
     ================
      */
+
+    public void unselect() {
+        selected = null;
+    }
 
     public void prepareCreate() {
         /*
