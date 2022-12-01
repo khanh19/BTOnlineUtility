@@ -11,7 +11,7 @@ public final class Constants {
     //---------------
 
     // Windows
-    public static final String PHOTOS_ABSOLUTE_PATH = "/Users/apple/Docroot/BTStorage/PhotoStorage";
+    public static final String PHOTOS_ABSOLUTE_PATH = "/Users/rober/Docroot/BTStorage/PhotoStorage";
 
     // Unix (macOS) or Linux
 //    public static final String PHOTOS_ABSOLUTE_PATH = "/Users/Balci/DocRoot/BTStorage/";
