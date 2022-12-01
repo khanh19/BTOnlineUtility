@@ -43,8 +43,8 @@
                                  showGridlines="true"
                                  paginator="true"
                                  rowKey="#{aBT.number}"
-                                 rows="5"
-                                 rowsPerPageTemplate="5,10,20,30,50,70,90"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,50,70,90"
                                  emptyMessage="No records found." >
 
 
@@ -103,7 +103,7 @@
                         </p:column>
 
                         <p:column headerText="Get Directions"
-                                style="width: 120px; text-align: center; vertical-align: top">
+                                  exportFunction="#{aBT.getName()}" style="width: 120px; text-align: center; vertical-align: top">
                             <a href="https://www.google.com/maps/dir/Current+Location/#{aBT.latitude},#{aBT.longitude}" target="_blank" style="color:blue">Get Directions</a>
                         </p:column>
 
