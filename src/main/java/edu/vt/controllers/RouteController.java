@@ -139,7 +139,12 @@ public class RouteController implements Serializable {
         if (!JsfUtil.isValidationFailed()) {
             // No JSF validation error. The CREATE operation is successfully performed.
             selected = null; // Remove selection
+            listOfRoutes = null;
         }
+    }
+
+    public void update() {
+        persist(JsfUtil.PersistAction.UPDATE,"Route was Successfully Updated!");
     }
 
     /*

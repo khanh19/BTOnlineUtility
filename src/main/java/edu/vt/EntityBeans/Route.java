@@ -68,12 +68,12 @@ public class Route implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "start_time")
-    private Time startTime;
+    private String startTime;
 
     @Basic(optional = false)
     @NotNull
     @Column(name = "end_time")
-    private Time endTime;
+    private String endTime;
 
     @Basic(optional = false)
     @NotNull
@@ -141,30 +141,20 @@ public class Route implements Serializable {
         this.routeName = routeName;
     }
 
-    public Date getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Time startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
-    public void setStartTimeString(String startTime) throws ParseException {
-        DateFormat formatter = new SimpleDateFormat("HH:mm:ss");
-        this.startTime = new java.sql.Time(formatter.parse(startTime).getTime());
-    }
-
-    public Date getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Time endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
-    }
-
-    public void setEndTimeString(String endTime) throws ParseException {
-        DateFormat formatter = new SimpleDateFormat("HH:mm:ss");
-        this.endTime = new java.sql.Time(formatter.parse(endTime).getTime());
     }
 
     public Integer getFrequency() {

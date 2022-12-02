@@ -17,7 +17,7 @@
     |  for the user to update the selected route's data.  |
     ==========================================================
     -->
-    <p:dialog id="RouteEditDlg" header="Edit #{routeController.selected.name} Data" widgetVar="RouteEditDialog"
+    <p:dialog id="RouteEditDlg" header="Edit #{routeController.selected.routeName} Data" widgetVar="RouteEditDialog"
               modal="true" position="center" appendTo="@(body)" width="80%" height="400"
               showEffect="slide" hideEffect="fade" responsive="true" >
 
@@ -31,13 +31,11 @@
                                  required="true" requiredMessage="Route Name is required!"/>
 
                     <p:outputLabel value="Start Time:" for="startTime" />
-                    <p:inputMask id="startTime" value="#{routeController.selected.startTime}" mask="99:99:99"
-                                 style="width:400px"
+                    <p:inputText id="startTime" value="#{routeController.selected.startTime}" style="width:400px"
                                  required="true" requiredMessage="Start Time is required!" />
 
                     <p:outputLabel value="End Time:" for="endTime" />
-                    <p:inputMask id="endTime" value="#{routeController.selected.endTime}" mask="99:99:99"
-                                 style="width:400px"
+                    <p:inputText id="endTime" value="#{routeController.selected.endTime}" style="width:400px"
                                  required="true" requiredMessage="End Time is required!" />
 
                     <p:outputLabel value="Route Frequency:" for="frequency" />
