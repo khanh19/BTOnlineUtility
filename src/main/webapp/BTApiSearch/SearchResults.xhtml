@@ -104,7 +104,9 @@
 
                         <p:column headerText="Get Directions"
                                   exportFunction="#{aBT.getName()}" style="width: 120px; text-align: center; vertical-align: top">
-                            <a href="https://www.google.com/maps/dir/Current+Location/#{aBT.latitude},#{aBT.longitude}" target="_blank" style="color:blue">Get Directions</a>
+                            <a href="https://www.google.com/maps/dir/#{aBT.latitude},#{aBT.longitude}//@#{aBT.latitude},#{aBT.longitude},15z" target="_blank" style="color:blue">Get Directions</a>
+
+
                         </p:column>
 
                         <br /><br />
