@@ -68,4 +68,16 @@ public class RouteFacade extends AbstractFacade<Route>{
         return (List<Route>) (entityManager.createNamedQuery("Route.findAll").getResultList());
     }
 
+    public Route findByRouteName(String routeName) {
+        if (entityManager.createQuery("SELECT r FROM Route r WHERE r.routeName = :routeName")
+                .setParameter("routeName", routeName)
+                .getResultList().isEmpty()) {
+            return null;
+        } else {
+            return (Route) (entityManager.createQuery("SELECT r FROM Route r WHERE r.routeName = :routeName")
+                    .setParameter("routeName", routeName)
+                    .getSingleResult());
+        }
+    }
+
 }

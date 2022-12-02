@@ -50,6 +50,7 @@ public class RouteController implements Serializable {
      */
 
     public String getRouteName() {
+        selected = routeFacade.findByRouteName(routeName);
         return routeName;
     }
 

@@ -22,7 +22,7 @@ import java.util.Date;
 @Table(name = "BusRoute")
 
 @NamedQueries({
-        @NamedQuery(name = "Route.findAll", query = "SELECT u FROM Route u")})
+        @NamedQuery(name = "Route.findAll", query = "SELECT r FROM Route r")})
 
 
 public class Route implements Serializable {

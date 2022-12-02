@@ -28,11 +28,48 @@
                 <h:panelGrid columns="2" cellpadding="10" cellspacing="3">
 
                     <p:outputLabel value="Selected Route: " style="font-style: italic" />
-                    <h:selectOneMenu value="#{routeController.routeName}" >
+                    <h:selectOneMenu value="#{routeController.routeName}">
+                        <p:ajax event="change" process="@this" update="RouteGrid" />
                         <f:selectItems value="#{routeController.listOfRouteNames}" />
                     </h:selectOneMenu>
 
                 </h:panelGrid>
+
+            </div>
+
+            <div align="left">
+                <p:panelGrid id="RouteGrid" columns="2" columnClasses="panelGridColumn1, panelGridColumn2">
+
+                    <h:outputText value="Route Name:"/>
+                    <h:outputText value="#{routeController.routeName}"/>
+
+                    <h:outputText value="Start Time:"/>
+                    <h:outputText value="#{routeController.selected.startTime}"/>
+
+                    <h:outputText value="End Time:"/>
+                    <h:outputText value="#{routeController.selected.endTime}"/>
+
+                    <h:outputText value="Frequency:"/>
+                    <h:outputText value="#{routeController.selected.frequency}"/>
+
+                    <h:outputText value="Days Running:" />
+                    <h:outputText value="#{routeController.selected.daysRunning}"/>
+
+                    <h:outputText value="Time Check:"/>
+                    <h:outputText value="#{routeController.selected.timeCheck}"/>
+
+                    <h:outputText value="Stop Names:"/>
+                    <h:outputText value="#{routeController.selected.stopName}"/>
+
+                    <h:outputText value="Bus Size:"/>
+                    <h:outputText value="#{routeController.selected.busSize}"/>
+
+                    <h:outputText value="Latitudes:"/>
+                    <h:outputText value="#{routeController.selected.latitudes}"/>
+
+                    <h:outputText value="Longitudes:"/>
+                    <h:outputText value="#{routeController.selected.longitudes}"/>
+                </p:panelGrid>
             </div>
         </h:form>
     </ui:define>
