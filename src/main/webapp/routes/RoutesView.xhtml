@@ -63,13 +63,20 @@
 
                     <h:outputText value="Bus Size:"/>
                     <h:outputText value="#{routeController.selected.busSize}"/>
-
-                    <h:outputText value="Latitudes:"/>
-                    <h:outputText value="#{routeController.selected.latitudes}"/>
-
-                    <h:outputText value="Longitudes:"/>
-                    <h:outputText value="#{routeController.selected.longitudes}"/>
                 </p:panelGrid>
+            </div>
+
+            <br/><br/>
+
+            <div align="center">
+                <iframe
+                        width="600"
+                        height="450"
+                        style="border:0"
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCAcfIGYa9vzj7ABIemB8UGLgr187PI4jQ&amp;q=Space+Needle,Seattle+WA">
+                </iframe>
             </div>
         </h:form>
     </ui:define>
