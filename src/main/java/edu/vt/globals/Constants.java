@@ -11,7 +11,7 @@ public final class Constants {
     //---------------
 
     // Windows
-    public static final String PHOTOS_ABSOLUTE_PATH = "/Users/apple/Docroot/BTStorage/PhotoStorage";
+    public static final String PHOTOS_ABSOLUTE_PATH = "/Users/rober/Docroot/BTStorage/PhotoStorage";
 
     // Unix (macOS) or Linux
 //    public static final String PHOTOS_ABSOLUTE_PATH = "/Users/Balci/DocRoot/BTStorage/";
@@ -94,6 +94,29 @@ public final class Constants {
             "What is your mother's maiden name?",
             "What was your favorite place to visit as a child?"
     };
+
+    public static final String[] ROUTES =
+            {
+                    "CRB - Carpenter Blvd",
+                    "CRC - Corporate Research Center",
+                    "BLU - Explorer Blue",
+                    "GLD - Explorer Gold",
+                    "HDG - Harding Ave",
+                    "HWD - Hethwood",
+                    "HWA - Hethwood A",
+                    "HWB - Hethwood B",
+                    "HXP - Hokie Express",
+                    "MSN - Main Street North",
+                    "MSS - Main Street South",
+                    "MSG - North Main Givens",
+                    "PHB - Patrick Henry B",
+                    "PHD - Patrick Henry Dr",
+                    "PRO - Progress Street",
+                    "MSA - South Main Airport Rd",
+                    "TOM - Toms Creek",
+                    "TTT - Two Town Trolley",
+                    "UCB - University City Blvd"
+            };
     
     public static final String[] BUS_STOPS =
             {
