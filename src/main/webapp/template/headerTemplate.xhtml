@@ -67,7 +67,6 @@
                             <c:choose>
                                 <c:when test="${userController.isAdmin()}">
                                     <p:menuitem value="Operator Information" outcome="/OperatorInformation/OpInf.xhtml" icon="fa fa-list"/>
-
                                 </c:when>
                                 <c:when test="#{userController.userIsSignedIn() == false}">
                                     <p:menuitem value="Sign In" outcome="/signIn/SignIn" icon="fas fa-sign-in-alt" />
