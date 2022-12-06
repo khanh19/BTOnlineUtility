@@ -30,7 +30,7 @@ public class Route implements Serializable {
     /*
     ========================================================
     Instance variables representing the attributes (columns)
-    of the UserSurvey table in the BevqDB database.
+    of the UserSurvey table in the BTUtilityDB database.
 
     CREATE TABLE BusRoute
     (

@@ -376,4 +376,6 @@ public final class Constants {
                     "North Franklin/Cambria Nbnd",
                     "N Franklin/Graham Sbnd"
             };
+
+    public static final String ROUTES_URL = "https://ridebt.org/index.php?option=com_ajax&module=bt_map&format=json&Itemid=101&method=getRoutePatterns";
 }

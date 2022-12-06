@@ -9,7 +9,10 @@ import edu.vt.EntityBeans.Route;
 import edu.vt.EntityBeans.UserSurvey;
 import edu.vt.FacadeBeans.RouteFacade;
 import edu.vt.controllers.util.JsfUtil;
+import edu.vt.globals.Constants;
 import edu.vt.globals.Methods;
+import org.primefaces.shaded.json.JSONArray;
+import org.primefaces.shaded.json.JSONObject;
 
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
@@ -222,6 +225,165 @@ public class RouteController implements Serializable {
                 JsfUtil.addErrorMessage(ex,"A persistence error occurred.");
             }
         }
+    }
+
+    public String drawRoute() {
+        ArrayList<String> points = getRoutePoints(routeName);
+
+        if (points == null || points.isEmpty()) {
+            return "https://www.google.com/maps/embed/v1/directions?key=AIzaSyCAcfIGYa9vzj7ABIemB8UGLgr187PI4jQ&origin=Current+Location&destination=37.229000,-80.423714";
+        }
+
+        String origin = points.remove(0) + "," + points.remove(0);
+        String destination = points.remove(points.size()-2) + "," + points.remove(points.size()-1);
+
+        String waypoints = "";
+
+        for (int i = 0; i < points.size(); i+=2) {
+
+            if (i >= 40) {break;} // Google Maps Embed API only supports 20 waypoints
+
+            String lat = points.get(i);
+            String lng = points.get(i+1);
+
+            String placeIdUrl = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&key=AIzaSyCAcfIGYa9vzj7ABIemB8UGLgr187PI4jQ";
+
+            try {
+                String jsonData = Methods.readUrlContent(placeIdUrl);
+
+                JSONObject wholeJsonObject = new JSONObject(jsonData);
+
+                String resultsData = wholeJsonObject.optString("results", "");
+
+                JSONArray jsonArray = new JSONArray(resultsData);
+
+                JSONObject jsonObject = jsonArray.getJSONObject(0);
+
+                String placeId = jsonObject.optString("place_id","");
+
+                if (i+2 >= points.size()) {
+                    waypoints += "place_id:" + placeId;
+                }
+                else {
+                    waypoints += "place_id:" + placeId + "|";
+                }
+
+            }
+            catch (Exception e) {
+                Methods.showMessage("Fatal Error", "Fetch Failed!",
+                        "Unable to get route with BT API");
+            }
+
+        }
+
+        String url = "https://www.google.com/maps/embed/v1/directions?key=AIzaSyCAcfIGYa9vzj7ABIemB8UGLgr187PI4jQ&origin="
+                + origin + "&destination=" + destination + "&waypoints=" + waypoints;
+
+        return url;
+    }
+
+    public ArrayList<String> getRoutePoints(String name) {
+        try {
+            String queryName = getQueryName(name);
+
+            if (queryName == null) {return null;}
+
+            String url = "https://ridebt.org/index.php?option=com_ajax&module=bt_map&format=json&Itemid=101&method=getPatternPoints&patternName=";
+            url += queryName.replaceAll(" ", "%20");
+
+            // Query API
+            String jsonData = Methods.readUrlContent(url);
+
+            JSONObject wholeJsonObject = new JSONObject(jsonData);
+
+            String routeData = wholeJsonObject.optString("data", "");
+
+            if (routeData.equals("")) {return null;}
+
+            // Parse JSON, add to a list
+            JSONArray jsonArray = new JSONArray(routeData);
+
+            int idx = 0;
+            ArrayList<String> latLng = new ArrayList<String>();
+
+            while (jsonArray.length() > idx) {
+
+                JSONObject jsonObject = jsonArray.getJSONObject(idx);
+
+                String isBusStop = jsonObject.optString("isBusStop", "");
+
+                if (isBusStop.equals("Y")) {
+                    String lat = jsonObject.optString("latitude","");
+                    String lng = jsonObject.optString("longitude","");
+
+                    latLng.add(lat);
+                    latLng.add(lng);
+                }
+                idx++;
+            }
+
+            return latLng;
+        }
+        catch (Exception e) {
+            Methods.showMessage("Fatal Error", "Fetch Failed!",
+                    "Unable to get route with BT API");
+        }
+
+        return null;
+    }
+
+    public String getQueryName(String name) {
+        try {
+
+            String jsonData = Methods.readUrlContent(Constants.ROUTES_URL);
+
+            JSONObject wholeJsonObject = new JSONObject(jsonData);
+
+            String routeData = wholeJsonObject.optString("data", "");
+
+            if (routeData.equals("")) {return null;}
+
+            JSONArray jsonArray = new JSONArray(routeData);
+
+            String[] route = name.split("-");
+
+            if (route.length <= 1) {return null;} // If route name isn't formatted as id-full name (e.g. TOM-Toms Creek)
+
+            int idx = 0;
+            String match = null;
+            String roughMatch = null;
+
+            while (jsonArray.length() > idx) {
+
+                JSONObject jsonObject = jsonArray.getJSONObject(idx);
+
+                String id = jsonObject.optString("routeId","");
+
+                if (id.equals(route[0])) {
+                    String currName = jsonObject.optString("name","");
+                    if (!currName.equals("")) {
+                        if (currName.split("-").length == 1) {
+                            match = currName;
+                            break;
+                        }
+                        else {
+                            if (roughMatch == null) {
+                                roughMatch = currName;
+                            }
+                        }
+                    }
+                }
+                idx++;
+            }
+
+            if (match != null) {return match;}
+            return roughMatch;
+        }
+        catch (Exception e) {
+            Methods.showMessage("Fatal Error", "Fetch Failed!",
+                    "Unable to get route with BT API!");
+        }
+        return null;
     }
 
 }
