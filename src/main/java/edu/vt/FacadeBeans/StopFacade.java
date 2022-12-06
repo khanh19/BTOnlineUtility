@@ -1,6 +1,6 @@
 /*
- * Created by Osman Balci and Connor Ostrander on 2022.10.9
- * Copyright © 2022 Osman Balci and Connor Ostrander. All rights reserved.
+ * Created by Osman Balci and Shrenik Peddibhotla on 2022.12.6
+ * Copyright © 2022 Osman Balci and Shrenik Peddibhotla. All rights reserved.
  */
 
 package edu.vt.FacadeBeans;
@@ -45,14 +45,14 @@ public class StopFacade extends AbstractFacade<Stop>{
         super(Stop.class);
     }
 
-    private void createBreweriesFromUrl(String url, List<Stop> stops) {
+    private void createStopsfromUrl(String url, List<Stop> stops) {
         try {
 
             url = url.replaceAll(" ", "%20");
             // Query API
             String jsonData = Methods.readUrlContent(url);
 
-            // Parse JSON, create brewery objects, add to a list
+            // Parse JSON, create stop objects, add to a list
             JSONArray jsonArray = new JSONArray(jsonData);
 
             int idx = 0;
@@ -64,41 +64,47 @@ public class StopFacade extends AbstractFacade<Stop>{
                     JSONObject jsonObject = jsonArray.getJSONObject(idx);
                     /*
                     ============================
-                    Brewery id
+                    Stop number
                     ============================
                     */
                     String number = jsonObject.optString("stopNumber", "");
                     if (number.equals("")) {
-                        // Skip the brewery with no id provided
+                        // Skip the stop with no number provided
                         idx++;
                         continue;
                     }
 
                     /*
                     ============================
-                    Brewery name
+                    Stop name
                     ============================
                     */
                     String name = jsonObject.optString("name", "");
                     if (name.equals("")) {
-                        // Skip the brewery with no name provided
+                        // Skip the stop with no name provided
                         idx++;
                         continue;
                     }
 
                     /*
                     ============================
-                    Brewery longitude
+                    Stop longitude
                     ============================
                     */
                     String longitude = jsonObject.optString("longitude", "");
 
                     /*
                     ============================
-                    Brewery latitude
+                    Stop latitude
                     ============================
                     */
                     String latitude = jsonObject.optString("latitude", "");
+
+                    /*
+                    ============================
+                    Stop routes
+                    ============================
+                    */
 
                     String routes = jsonObject.optString("routes", "");
 
@@ -109,8 +115,8 @@ public class StopFacade extends AbstractFacade<Stop>{
             }
         }
         catch (Exception e) {
-            Methods.showMessage("Fatal Error", "Matching Brewery Fetch Failed!",
-                    "Unable to get matching breweries with the Brewery DB API!");
+            Methods.showMessage("Fatal Error", "Matching Stop Fetch Failed!",
+                    "Unable to get matching stops with the Stops API!");
         }
     }
 
@@ -118,21 +124,21 @@ public class StopFacade extends AbstractFacade<Stop>{
         List<Stop> stops = new ArrayList<>();
         //searchString = searchString.replace(" ", "%20");
         String url = "http://100.26.154.75:8080/BTStopsAPI/api/btStops/nameContains/" + searchString;
-        createBreweriesFromUrl(url, stops);
+        createStopsfromUrl(url, stops);
         return stops;
     }
 
     public List<Stop> numberQuery(String searchString) {
         List<Stop> stops = new ArrayList<>();
         String url = "http://100.26.154.75:8080/BTStopsAPI/api/btStops/stopNumber/" + searchString;
-        createBreweriesFromUrl(url, stops);
+        createStopsfromUrl(url, stops);
         return stops;
     }
 
     public List<Stop> routeQuery(String searchString) {
         List<Stop> stops = new ArrayList<>();
         String url = "http://100.26.154.75:8080/BTStopsAPI/api/btStops/routeContains/" + searchString;
-        createBreweriesFromUrl(url, stops);
+        createStopsfromUrl(url, stops);
         return stops;
     }
 

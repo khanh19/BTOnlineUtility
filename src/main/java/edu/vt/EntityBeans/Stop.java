@@ -1,6 +1,6 @@
 /*
- * Created by Rob Guldi on 2022.12.1
- * Copyright © 2022 Robert Guldi. All rights reserved.
+ * Created by Shrenik Peddibhotla on 2022.12.1
+ * Copyright © 2022 Shrenik Peddibhotla. All rights reserved.
  */
 
 package edu.vt.EntityBeans;
@@ -19,7 +19,7 @@ public class Stop implements Serializable{
 
     /*
     =============================================================
-    Class constructors for instantiating a Brewery entity object.
+    Class constructors for instantiating a Stop entity object.
     =============================================================
      */
     public Stop() {
@@ -92,9 +92,9 @@ public class Stop implements Serializable{
     }
 
     /*
-     Checks if the Brewery object identified by 'object' is the same as the Brewery object identified by 'id'
-     Parameter object = Brewery object identified by 'object'
-     Returns True if the Brewery 'object' and 'id' are the same; otherwise, return False
+     Checks if the Stop object identified by 'object' is the same as the Stop object identified by 'id'
+     Parameter object = Stop object identified by 'object'
+     Returns True if the Stop 'object' and 'id' are the same; otherwise, return False
      */
     @Override
     public boolean equals(Object object) {

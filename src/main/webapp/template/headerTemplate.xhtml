@@ -72,11 +72,14 @@
                                 <c:when test="#{userController.userIsSignedIn() == false}">
                                     <p:menuitem value="Sign In" outcome="/signIn/SignIn" icon="fas fa-sign-in-alt" />
                                     <p:menuitem value="Create Account" outcome="/userAccount/CreateAccount" icon="fas fa-user-plus" />
-                                    <p:menuitem value="Stops" outcome="/BTApiSearch/Search.xhtml" icon="fas fa-pencil-alt"/>
                                     <p:menuitem value="View Routes" outcome="/routes/RoutesView" icon="fas fa-pencil-alt"/>
+
                                 </c:when>
                                 <c:otherwise>
                                     <p:menuitem value="View Routes" outcome="/routes/RoutesView" icon="fas fa-pencil-alt"/>
+                                    <p:menuitem value="Stops" outcome="/BTApiSearch/Search.xhtml" icon="fas fa-stop"/>
+                                    <p:menuitem value="Favorite Stops" outcome="/BTApiSearch/FavoriteStops" icon="fas fa-star"/>
+
                                 </c:otherwise>
                             </c:choose>
                             <c:if test="#{userController.userIsSignedIn() == true}">

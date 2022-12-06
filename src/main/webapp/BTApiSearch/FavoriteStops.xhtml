@@ -15,7 +15,7 @@
 <ui:composition template="/template/siteTemplate.xhtml">
     <ui:define name="title">
         <!-- Set the page title -->
-        <h:outputText value="Stop Results" />
+        <h:outputText value="Favorite Stops" />
     </ui:define>
 
     <!-- Create the content for this page below -->
@@ -31,10 +31,10 @@
         </f:metadata>
 
         <div align="center">
-            <h:form id="BTListForm">
-                <p:panel header="BT API Search Results">
+            <h:form id="BTListForm2">
+                <p:panel header="Favorite Stops">
                     <p:dataTable id="datalist"
-                                 value="#{btAPIController.stopSearchItems}"
+                                 value="#{btAPIController.favoriteStops}"
                                  var="aBT"
                                  widgetVar="btDataTable"
                                  selectionMode="single"
@@ -49,10 +49,6 @@
 
 
 
-                        <p:ajax event="rowSelect"
-                                update="favoriteButton"/>
-                        <p:ajax event="rowUnselect"
-                                update="favoriteButton"/>
                         <!--
                         ********************
                         *  Stop Name   *
@@ -77,7 +73,7 @@
 
                         <!--
                        ****************************
-                       *   Stop Latitude   *
+                       *   BT Latitude   *
                        ****************************
                        -->
                         <p:column headerText="Latitude"
@@ -87,7 +83,7 @@
 
                         <!--
                         ****************************
-                        *   Stop Longitude   *
+                        *   BT Longitude   *
                         ****************************
                         -->
                         <p:column headerText="Longitude"
@@ -99,7 +95,7 @@
 
                         <!--
                         ****************************
-                        *   Stop Routes   *
+                        *   Stop Routes  *
                         ****************************
                         -->
                         <p:column headerText="Routes"
@@ -134,15 +130,10 @@
                                     <p:dataExporter type="csv" target="datalist" fileName="Stops" />
                                 </p:commandButton>
                                 &nbsp;
-                                <p:commandButton id="favoriteButton" value="Add to Favorites" icon="fas fa-plus" styleClass="rounded-button"
-                                                 actionListener="#{btAPIController.addToFavorites(btAPIController.selected)}"
-                                                 update="datalist,:growlInfoMessage,:growlWarningMessage,:growlErrorMessage,:growlFatalMessage"
-                                                 disabled="#{empty btAPIController.selected}">
-                                &nbsp;</p:commandButton>
                                 &nbsp;
                                 <!-- GO BACK button -->
                                 <p:button id="backButton" icon="fas fa-arrow-left" styleClass="ui-button-outlined"
-                                          outcome="/BTApiSearch/Search" value="Go Back"/>
+                                          outcome="/BTApiSearch/Search" value="Go Back to Search"/>
 
 
                             </div>

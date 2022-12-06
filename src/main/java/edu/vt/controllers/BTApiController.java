@@ -1,6 +1,6 @@
 /*
- * Created by Connor Ostrander on 2022.10.9
- * Copyright © 2022 Connor Ostrander. All rights reserved.
+ * Created by Shrenik Peddibhotla on 2022.10.9
+ * Copyright © 2022 Shrenik Peddibhotla. All rights reserved.
  */
 
 package edu.vt.controllers;
@@ -16,12 +16,13 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
+import java.util.ArrayList;
 
 @Named("btAPIController")
 @SessionScoped
 public class BTApiController implements Serializable {
 
-    // searchItems = List of object references of Brewery objects found in the API DB search
+    // searchItems = List of object references of Stop objects found in the API DB search
     private List<Stop> searchItems = null;
     private Stop selected;
 
@@ -32,10 +33,22 @@ public class BTApiController implements Serializable {
 
     private String routeQ;
 
+    public ArrayList<Stop> getFavoriteStops() {
+        return favoriteStops;
+    }
+
+    public void setFavoriteStops(ArrayList<Stop> favoriteStops) {
+        this.favoriteStops = favoriteStops;
+    }
+
+    // favoriteStops - list of a user's favorite Stops
+    private ArrayList<Stop> favoriteStops = new ArrayList<Stop>() {
+    };
+
 
     /*
     The @EJB annotation directs the EJB Container Manager to inject (store) the object reference of the
-    BreweryFacade bean into the instance variable 'breweryFacade' after it is instantiated at runtime.
+    StopFacade bean into the instance variable 'stopFacade' after it is instantiated at runtime.
      */
     @EJB
     private StopFacade stopFacade;
@@ -91,19 +104,19 @@ public class BTApiController implements Serializable {
         if (searchItems == null) {
             switch (searchType) {
                 case 1: // Search Type 1
-                    // Search Open Brewery DB API by Brewery Name
+                    // Search Stops API by Stop Number
                     searchItems = stopFacade.numberQuery(numberQ);
                     break;
                 case 2: // Search Type 2
-                    // Search Open Brewery DB API by City Name
+                    // Search Stops API by Stop Name
                     searchItems = stopFacade.nameQuery(nameQ);
                     break;
                 case 3: // Search Type 3
-                    // Search Open Brewery DB API by State Name
+                    // Search Stops API by Stop Name via dropdown
                     searchItems = stopFacade.nameQuery(nameQ);
                     break;
                 case 4: // Search Type 3
-                    // Search Open Brewery DB API by State Name
+                    // Search Stops API by Routes
 
                     String[] route_bad = routeQ.split("-");
 
@@ -119,6 +132,11 @@ public class BTApiController implements Serializable {
             }
         }
         return searchItems;
+    }
+
+    public void addToFavorites(Stop stop)
+    {
+        favoriteStops.add(stop);
     }
 
     /*
