@@ -29,12 +29,33 @@ public class PhotoService {
     @PostConstruct
     public void init() {
         listOfPhotos = new ArrayList<>();
-        String[] titles = {"Wellness awaits you! Treating the mind, body, soul.", "Health, Wealth, and Happiness.", "Healthy Body, Mind, and Spirit.",  "Wellness is the act of practicing healthy habits on a daily basis to attain better physical and mental health outcomes.", "Exercise is king. Nutrition is queen. Put them together and you’ve got a kingdom. [Jack LaLanne]", "Healthy Living Secret: Turn off the screens and sleep!", "The number one secret to living long and healthier is to eat the right kind of food.", "Health is a state of body. Wellness is a state of being. [J. Stanford]", "Benefits of yoga include stress management, mental/emotional health, promoting healthy eating/activity habits, sleep, and balance.", "Living a healthy lifestyle can help prevent chronic diseases and long-term illnesses.", "Good health, peace of mind, and healthy relationships are the real wealth of life.", "Your health is your most priceless possession. Being Healthy allows you to enjoy all other Blessings!"};
-        for(int i = 1; i <= titles.length; i++) {
-            listOfPhotos.add(new Photo("/resources/images/photos/photo" + i + ".jpg", "/resources/images/photos/photo" + i + "s.jpg",
-                    "Description for Photo 1", titles[i-1]));
-        }
-    }
+
+        listOfPhotos.add(new Photo("/resources/images/photos/photo1.jpg", "/resources/images/photos/photo1s.jpg",
+                "Description for Photo 1", "Satellite View of North American Countries"));
+        listOfPhotos.add(new Photo("/resources/images/photos/photo2.jpg", "/resources/images/photos/photo2s.jpg",
+                "Description for Photo 2", "Political Map of Countries on the Planet of Earth"));
+        listOfPhotos.add(new Photo("/resources/images/photos/photo3.jpg", "/resources/images/photos/photo3s.jpg",
+                "Description for Photo 3", "Physical Map of Countries on the Planet of Earth"));
+        listOfPhotos.add(new Photo("/resources/images/photos/photo4.jpg", "/resources/images/photos/photo4s.jpg",
+                "Description for Photo 4", "Country Flags Around the Globe"));
+        listOfPhotos.add(new Photo("/resources/images/photos/photo5.jpg", "/resources/images/photos/photo5s.jpg",
+                "Description for Photo 5", "Continents of the Planet of Earth"));
+        listOfPhotos.add(new Photo("/resources/images/photos/photo6.jpg", "/resources/images/photos/photo6s.jpg",
+                "Description for Photo 6", "Map of the Continent of Australia"));
+        listOfPhotos.add(new Photo("/resources/images/photos/photo7.jpg", "/resources/images/photos/photo7s.jpg",
+                "Description for Photo 7", "Map of the Countries in the Continent of Asia"));
+        listOfPhotos.add(new Photo("/resources/images/photos/photo8.jpg", "/resources/images/photos/photo8s.jpg",
+                "Description for Photo 8", "Map of the Countries in the European Union"));
+        listOfPhotos.add(new Photo("/resources/images/photos/photo9.jpg", "/resources/images/photos/photo9s.jpg",
+                "Description for Photo 9", "Map of the Countries in the Continent of Africa"));
+        listOfPhotos.add(new Photo("/resources/images/photos/photo10.jpg", "/resources/images/photos/photo10s.jpg",
+                "Description for Photo 10", "Map of the Countries in the Continent of South America"));
+        listOfPhotos.add(new Photo("/resources/images/photos/photo11.jpg", "/resources/images/photos/photo11s.jpg",
+                "Description for Photo 11", "Flags of the Countries in the Continent of Africa"));
+        listOfPhotos.add(new Photo("/resources/images/photos/photo12.jpg", "/resources/images/photos/photo12s.jpg",
+                "Description for Photo 12", "Physical Map of Countries in the Middle East"));
+
+           }
 
     /*
     =============
