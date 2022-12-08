@@ -94,7 +94,7 @@ public class Route implements Serializable {
 
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 512)
+    @Size(min = 1, max = 1024)
     @Column(name = "stop_name")
     private String stopName;
 

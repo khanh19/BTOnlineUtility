@@ -30,6 +30,7 @@
                     <p:outputLabel value="Selected Route: " style="font-style: italic" />
                     <h:selectOneMenu value="#{routeController.routeName}">
                         <p:ajax event="change" process="@this" update="RouteGrid" />
+                        <f:selectItem itemLabel="Pick a Route"  itemValue="" noSelectionOption="true"/>
                         <f:selectItems value="#{routeController.listOfRouteNames}" />
                     </h:selectOneMenu>
 
@@ -69,19 +70,22 @@
             <br/><br/>
 
             <div align="center">
-
-                Refresh the page to see the selected route!
-
                 <br/><br/>
 
                 <iframe
                         width="600"
                         height="450"
                         style="border:0"
-                        loading="lazy"
+                        loading="eager"
                         referrerpolicy="no-referrer-when-downgrade"
                         src="#{routeController.drawRoute()}">
                 </iframe>
+            </div>
+            <br></br>
+            <br></br>
+            <div align="center">
+                <p:commandButton id="submitButton" value="Draw Route" icon="fas fa-eye" styleClass="rounded-button"
+                                 action="/routes/RoutesView?faces-redirect=true"/>
             </div>
 
         </h:form>

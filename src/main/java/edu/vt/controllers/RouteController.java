@@ -276,6 +276,9 @@ public class RouteController implements Serializable {
 
         }
 
+        if (waypoints.substring(waypoints.length()-1).equals("|")){
+            waypoints =  waypoints.substring(0,waypoints.length()-1);
+        }
         String url = "https://www.google.com/maps/embed/v1/directions?key=AIzaSyCAcfIGYa9vzj7ABIemB8UGLgr187PI4jQ&origin="
                 + origin + "&destination=" + destination + "&waypoints=" + waypoints;
 
