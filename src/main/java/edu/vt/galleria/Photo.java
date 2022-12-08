@@ -1,6 +1,6 @@
 /*
- * Created by Rob Guldi on 2022.10.14
- * Copyright © 2022 Robert Guldi. All rights reserved.
+ * Created by Khanh Pham on 2022.8.30
+ * Copyright © 2022 Khanh Pham. All rights reserved.
  */
 
 package edu.vt.galleria;

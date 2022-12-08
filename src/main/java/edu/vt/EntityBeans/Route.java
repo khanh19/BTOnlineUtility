@@ -10,6 +10,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 // The @Entity annotation designates this class as a JPA Entity class representing the UserSurvey table in the BevqDB database.
@@ -19,7 +22,7 @@ import java.util.Date;
 @Table(name = "BusRoute")
 
 @NamedQueries({
-        @NamedQuery(name = "Route.findAll", query = "SELECT u FROM Route u")})
+        @NamedQuery(name = "Route.findAll", query = "SELECT r FROM Route r")})
 
 
 public class Route implements Serializable {
@@ -27,7 +30,7 @@ public class Route implements Serializable {
     /*
     ========================================================
     Instance variables representing the attributes (columns)
-    of the UserSurvey table in the BevqDB database.
+    of the UserSurvey table in the BTUtilityDB database.
 
     CREATE TABLE BusRoute
     (
@@ -65,14 +68,12 @@ public class Route implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "start_time")
-    @Temporal(TemporalType.DATE)
-    private Date startTime;
+    private String startTime;
 
     @Basic(optional = false)
     @NotNull
     @Column(name = "end_time")
-    @Temporal(TemporalType.DATE)
-    private Date endTime;
+    private String endTime;
 
     @Basic(optional = false)
     @NotNull
@@ -114,6 +115,7 @@ public class Route implements Serializable {
     @Column(name = "longitudes")
     private String longitudes;
 
+
     public Route() {
     }
 
@@ -139,23 +141,19 @@ public class Route implements Serializable {
         this.routeName = routeName;
     }
 
-    public Date getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
-    public Date getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-
-    public void setEndTime(Time endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 

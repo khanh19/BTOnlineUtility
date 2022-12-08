@@ -7,10 +7,15 @@ package edu.vt.FacadeBeans;
 
 import edu.vt.EntityBeans.Route;
 import edu.vt.EntityBeans.User;
+import edu.vt.globals.Constants;
+import edu.vt.globals.Methods;
+import org.primefaces.shaded.json.JSONArray;
+import org.primefaces.shaded.json.JSONObject;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
 import java.util.List;
 
 // @Stateless annotation implies that the conversational state with the client shall NOT be maintained.
@@ -67,5 +72,18 @@ public class RouteFacade extends AbstractFacade<Route>{
     public List<Route> findAllRoutes() {
         return (List<Route>) (entityManager.createNamedQuery("Route.findAll").getResultList());
     }
+
+    public Route findByRouteName(String routeName) {
+        if (entityManager.createQuery("SELECT r FROM Route r WHERE r.routeName = :routeName")
+                .setParameter("routeName", routeName)
+                .getResultList().isEmpty()) {
+            return null;
+        } else {
+            return (Route) (entityManager.createQuery("SELECT r FROM Route r WHERE r.routeName = :routeName")
+                    .setParameter("routeName", routeName)
+                    .getSingleResult());
+        }
+    }
+
 
 }

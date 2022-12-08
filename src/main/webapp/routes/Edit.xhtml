@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  - Created by Osman Balci and Connor Ostrander on 2022.12.1
+  - Copyright © 2022 Osman Balci and Connor Ostrander. All rights reserved.
+  -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition>
+    <!--
+    ==========================================================
+    |  Clicking the EDIT button displays this Dialog window  |
+    |  for the user to update the selected route's data.  |
+    ==========================================================
+    -->
+    <p:dialog id="RouteEditDlg" header="Edit #{routeController.selected.routeName} Data" widgetVar="RouteEditDialog"
+              modal="true" position="center" appendTo="@(body)" width="80%" height="400"
+              showEffect="slide" hideEffect="fade" responsive="true" >
+
+        <h:form id="RouteEditForm" class="ui-datatable-data">
+            <h:panelGroup id="display">
+                <p:panelGrid columns="2" columnClasses="panelGridColumn1, panelGridColumn2"
+                             rendered="#{routeController.selected != null}">
+
+                    <p:outputLabel value="Route Name:" for="routeName" />
+                    <p:inputText id="routeName" value="#{routeController.selected.routeName}" style="width:400px"
+                                 required="true" requiredMessage="Route Name is required!"/>
+
+                    <p:outputLabel value="Start Time:" for="startTime" />
+                    <p:inputText id="startTime" value="#{routeController.selected.startTime}" style="width:400px"
+                                 required="true" requiredMessage="Start Time is required!" />
+
+                    <p:outputLabel value="End Time:" for="endTime" />
+                    <p:inputText id="endTime" value="#{routeController.selected.endTime}" style="width:400px"
+                                 required="true" requiredMessage="End Time is required!" />
+
+                    <p:outputLabel value="Route Frequency:" for="frequency" />
+                    <p:inputText id="frequency" value="#{routeController.selected.frequency}" style="width:400px"
+                                 required="true" requiredMessage="Route Frequency is required!"/>
+
+                    <p:outputLabel value="Days Running:" for="daysRunning" />
+                    <p:inputText id="daysRunning" value="#{routeController.selected.daysRunning}" style="width:400px"
+                                 required="true" requiredMessage="Days Running is required!"/>
+
+                    <p:outputLabel value="Time Check:" for="timeCheck" />
+                    <p:inputText id="timeCheck" value="#{routeController.selected.timeCheck}" style="width:400px"
+                                 required="true" requiredMessage="Time Check is required!" />
+
+                    <p:outputLabel value="Stop Names:" for="stopName" />
+                    <p:inputText id="stopName" value="#{routeController.selected.stopName}" style="width:400px"
+                                 required="true" requiredMessage="Stop Names are required!" />
+
+                    <p:outputLabel value="Bus Size:" for="busSize" />
+                    <p:inputText id="busSize" value="#{routeController.selected.busSize}" style="width:400px"
+                                 required="true" requiredMessage="Bus Size is required!" />
+
+                    <p:outputLabel value="Latitude:" for="latitudes" />
+                    <p:inputText id="latitudes" value="#{routeController.selected.latitudes}" style="width:400px"
+                                 required="true" requiredMessage="Latitude is required!" />
+
+                    <p:outputLabel value="Longitude:" for="longitudes" />
+                    <p:inputText id="longitudes" value="#{routeController.selected.longitudes}" style="width:400px"
+                                 required="true" requiredMessage="Longitude is required!" />
+                </p:panelGrid>
+            </h:panelGroup>
+
+            <h:panelGroup>
+                <br />
+                <div align="center">
+                    <!-- SAVE button -->
+                    <p:commandButton value="Save" icon="fas fa-save" styleClass="rounded-button"
+                                     ajax="false" actionListener="#{routeController.update}"
+                                     update="display,:RouteListForm:datalist,:growlInfoMessage,:growlWarningMessage,:growlErrorMessage,:growlFatalMessage"
+                                     oncomplete="handleSubmit(args, 'RouteEditDialog');"/>
+                    &nbsp;
+                    <!-- CANCEL button -->
+                    <p:commandButton value="Cancel" icon="fas fa-ban" styleClass="ui-button-outlined"
+                                     immediate="true" onclick="PF('RouteEditDialog').hide()" />
+                </div>
+            </h:panelGroup>
+        </h:form>
+    </p:dialog>
+</ui:composition>
+-->
+</html>

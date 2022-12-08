@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  - Created by Balci and Connor Ostrander on 2022.12.1
+  - Copyright © 2022 Balci and Connor Ostrander. All rights reserved.
+  -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition>
+    <!--
+    ==========================================================
+    |  Clicking the VIEW button displays this Dialog window  |
+    |  for the user to view the selected public video's data.       |
+    ==========================================================
+    height="450" makes the dialog window to be vertically scrollable
+    width="80%" and responsive="true" make the dialog window horizontally responsive
+    class="scalableImage" makes the displayed image responsive
+    -->
+    <p:dialog id="RouteViewDlg" header="View Route Data" widgetVar="RouteViewDialog"
+              modal="true" position="center" appendTo="@(body)" width="60%" height="400"
+              showEffect="slide" hideEffect="fade" responsive="true" >
+
+        <h:form id="RouteViewForm" class="ui-datatable-data">
+            <h:panelGroup id="display">
+                <p:panelGrid columns="2" columnClasses="panelGridColumn1, panelGridColumn2"
+                             rendered="#{routeController.selected != null}">
+
+                    <h:outputText value="Route Name:"/>
+                    <h:outputText value="#{routeController.selected.routeName}"/>
+
+                    <h:outputText value="Start Time:"/>
+                    <h:outputText value="#{routeController.selected.startTime}"/>
+
+                    <h:outputText value="End Time:"/>
+                    <h:outputText value="#{routeController.selected.endTime}"/>
+
+                    <h:outputText value="Frequency:"/>
+                    <h:outputText value="#{routeController.selected.frequency}"/>
+
+                    <h:outputText value="Days Running:" />
+                    <h:outputText value="#{routeController.selected.daysRunning}"/>
+
+                    <h:outputText value="Time Check:"/>
+                    <h:outputText value="#{routeController.selected.timeCheck}"/>
+
+                    <h:outputText value="Stop Names:"/>
+                    <h:outputText value="#{routeController.selected.stopName}"/>
+
+                    <h:outputText value="Bus Size:"/>
+                    <h:outputText value="#{routeController.selected.busSize}"/>
+
+                    <h:outputText value="Latitudes:"/>
+                    <h:outputText value="#{routeController.selected.latitudes}"/>
+
+                    <h:outputText value="Longitudes:"/>
+                    <h:outputText value="#{routeController.selected.longitudes}"/>
+                </p:panelGrid>
+            </h:panelGroup>
+
+            <h:panelGroup>
+                <br />
+                <div align="center">
+                    <!-- CLOSE button -->
+                    <p:commandButton value="Close" icon="fas fa-window-close" styleClass="ui-button-outlined"
+                                     onclick="PF('RouteViewDialog').hide()" />
+                </div>
+            </h:panelGroup>
+
+        </h:form>
+
+    </p:dialog>
+</ui:composition>
+</html>
