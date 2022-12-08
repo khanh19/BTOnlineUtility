@@ -11,7 +11,7 @@ public final class Constants {
     //---------------
 
     // Windows
-    public static final String PHOTOS_ABSOLUTE_PATH = "/Users/rober/Docroot/BTStorage/PhotoStorage";
+
 
     // Unix (macOS) or Linux
 //    public static final String PHOTOS_ABSOLUTE_PATH = "/Users/Balci/DocRoot/BTStorage/";
@@ -19,7 +19,7 @@ public final class Constants {
     //-------------------------------------------------------------------
     // To run on your AWS EC2 instance, on VENUS or JUPITER course server
     //-------------------------------------------------------------------
-    //public static final String PHOTOS_ABSOLUTE_PATH = "/opt/wildfly/DocRoot/BTStorage/";
+    public static final String PHOTOS_ABSOLUTE_PATH = "/opt/wildfly/DocRoot/CS3754-Team8-PhotoStorage/";
 
     /*
      ---------------------------------
@@ -47,12 +47,12 @@ public final class Constants {
     //---------------
     // To run locally
     //---------------
-    public static final String PHOTOS_URI = "http://localhost:8080/btuserphotos/";
+//    public static final String PHOTOS_URI = "http://localhost:8080/btuserphotos/";
 
     //-----------------------------------------------------
     // To run on your AWS EC2 instance with your IP address
     //-----------------------------------------------------
-    //public static final String PHOTOS_URI = "http://100.25.47.142:8080/btuserphotos/";
+    public static final String PHOTOS_URI = "http://52.91.154.78/btuserphotos/";
 
     //-----------------------------------------
     // To run on VENUS or JUPITER course server

@@ -6,7 +6,6 @@
 package edu.vt.controllers;
 
 import edu.vt.EntityBeans.Route;
-import edu.vt.EntityBeans.UserSurvey;
 import edu.vt.FacadeBeans.RouteFacade;
 import edu.vt.controllers.util.JsfUtil;
 import edu.vt.globals.Constants;
@@ -20,7 +19,6 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;

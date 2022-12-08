@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  - Created by Rob Guldi on 2022.12.7
+  - Copyright © 2022 Robert Guldi. All rights reserved.
+  -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<!-- Do not enter tags before the composition line since they are ignored by JSF -->
+
+<!-- This page is constructed based on the siteTemplate -->
+<ui:composition template="/template/siteTemplate.xhtml">
+    <ui:define name="title">
+        <!-- Set the page title -->
+        <h:outputText value="BT Operator Information" />
+    </ui:define>
+
+    <!-- Create the content for this page below -->
+    <ui:define name="editableContent">
+        <div align="left" style="width:97%">
+
+            <p:menubar>
+                <p:submenu label="Routes and Schedules" target="_blank" outcome="/sched/Sched.xhtml">
+                    <p:submenu label="Route Cards">
+                        <p:submenu label="Full Service">
+                            <p:menuitem value="Weekdays" target="_blank"
+                                        url="http://www.bt4uclassic.org/operatorinfo/Full_Service/FY23%20-%20v.1.2%20-%20Full%20Weekdays.pdf" />
+                            <p:menuitem value="Weekends" target="_blank"
+                                        url="http://www.bt4uclassic.org/operatorinfo/Full_Service/FY23%20-%20v.1.2%20-%20Full%20Weekends.pdf"/>
+                            <p:menuitem value="Alternate-Exams" target="_blank"
+                                        url="http://www.bt4uclassic.org/operatorinfo/Full_Service/FY23%20-%20v.1.2%20-%20Full%20Alternate%20-%20Saturday%20Exam.pdf"/>
+                        </p:submenu>
+                        <p:submenu label="Reduced Service">
+                            <p:menuitem value="Weekdays" target="_blank"
+                                        url="http://www.bt4uclassic.org/operatorinfo/Reduced_Service/FY23%20-%20v.1%20-%20Reduced%20Weekdays.pdf"/>
+                            <p:menuitem value="Weekends" target="_blank"
+                                        url="http://www.bt4uclassic.org/operatorinfo/Reduced_Service/FY23%20-%20v.1%20-%20Reduced%20Weekends.pdf"/>
+                            <p:menuitem value="Alternate-Holidays" target="_blank"
+                                        url="http://www.bt4uclassic.org/operatorinfo/Reduced_Service/FY23%20-%20v.1%20-%20Reduced%20Weekdays%20-%20November%20December%20Holiday%20Schedule.pdf"/>
+                        </p:submenu>
+                        <p:submenu label="Intermediate">
+                            <p:menuitem value="Weekdays" target="_blank"
+                                        url="http://www.bt4uclassic.org/operatorinfo/Intermediate_Service/FY23%20-%20v.1.2%20-%20Intermediate%20Weekdays.pdf"/>
+                            <p:menuitem value="Weekends" target="_blank"
+                                        url="http://www.bt4uclassic.org/operatorinfo/Intermediate_Service/FY23%20-%20v.1.2%20-%20Intermediate%20Weekdays.pdf"/>
+                            <p:menuitem value="Alternate-Commencement" target="_blank"
+                                        url="http://www.bt4uclassic.org/operatorinfo/Reduced_Service/FY23%20-%20v.1%20-%20Reduced%20-%20Commencement%20Saturday.pdf"/>
+                        </p:submenu>
+                        <p:menuitem value="Christiansburg" target="_blank"
+                                    url="http://www.bt4uclassic.org/operatorinfo/Christiansburg_Service/FY23%20-%20v.1%20-%20Christiansburg%20Weekdays%202022.08.15.pdf"/>
+                    </p:submenu>
+                    <p:submenu label="Calendars">
+                        <p:menuitem value="Service Calendar" target="_blank"
+                                    URL="http://www.bt4uclassic.org/operatorinfo/FY23%20FINAL%20Planned%20BT%20Operating%20Calendar%202022.07.14.pdf"/>
+                        <p:menuitem value="Training Calendar" target="_blank"
+                                    URL="http://www.bt4uclassic.org/operatorinfo/FY23%20BT%20Training%20Calendar%202022.07.21.pdf"/>
+                    </p:submenu>
+                    <p:menuitem value="Upcoming Detours" target="_blank" outcome="/sched/Detours.xhtml"/>
+                </p:submenu>
+                <p:submenu label="Shift Pick">
+                    <p:menuitem value="Operator 1" target="_blank" outcome="/shiftPick/ShiftPickOp1.xhtml"/>
+                    <p:menuitem value="Operator 2 &amp; 3" target="_blank" outcome="/shiftPick/ShiftPickOp23.xhtml"/>
+                </p:submenu>
+                <p:menuitem value="Training" target="_blank" outcome="/training/Training.xhtml"/>
+                <p:menuitem value="Forms and Paperwork" target="_blank" outcome="/paperwork/Paperwork"/>
+            </p:menubar>
+        </div>
+
+        <h:form id="optionForm" align="center">
+            <div align="center" style="width:97%">
+                <div class="item-page" itemscope="" itemtype="https://schema.org/Article">
+
+
+                    <div class="page-header">
+                        <h2 itemprop="headline">
+                            Safety Meeting Videos		</h2>
+                    </div>
+
+                    <div align="center">
+                        <h3 align="center">Watch Latest Video</h3>
+                        <br />
+                        <div class="responsive-container">
+                            <iframe class="responsive-iframe"
+                                    src="https://www.youtube.com/embed/lxThJKAVh_8">
+                            </iframe>
+                        </div>
+
+                    </div>
+
+
+                    
+                        <p><a href="https://ridebt.org/images/training/safety/Safety_Meeting_Policy_2022.pdf" target="_blank">SAFETY MEETING POLICY</a></p>
+                        <p>2022&nbsp;</p>
+                        
+                            <p><a href="https://youtu.be/MCeWJmJ-zgw">Safety Meeting - Feb 2022 (Video)</a>, <a href="https://ridebt.org/images/training/safety/February_Safety_Meeting_Agenda_2022.pdf" target="_blank">Agenda</a></p>
+                            <p><a href="https://ridebt.org/images/training/safety/2022/March_2022_Safety_Meeting_Agenda.pdf" target="_blank">Safety Meeting - March 2022, Agenda</a></p>
+                            <p><a href="https://youtu.be/a4S0XxbbEUs" target="_blank" rel="noopener">Safety Meeting - April 2022 (Video)</a>, <a href="https://ridebt.org/images/training/safety/2022/April_Safety_Meeting_Agenda_2022.pdf" target="_blank">Agenda</a></p>
+                            <p><a href="https://youtu.be/Ngw8H7Igw1k">Safety Meeting - June 2022 (Video)</a> <a href="file:///M:/Operations/Training/Safety%20Meetings/2022/6-June/June%20Safety%20Meeting%20Agenda%202022.pdf">Agenda</a></p>
+                            <p><a href="https://youtu.be/PojVtPnmJ2w" target="_blank" rel="noopener">Safety Meeting - August 2022 (Video),</a> <a href="https://ridebt.org/images/training/safety/2022/August_Safety_Meeting_Agenda.pdf" target="_blank">Agenda</a></p>
+                            <p><a href="https://youtu.be/lxThJKAVh_8" target="_blank" rel="noopener">Safety Meeting - September 2022 (Video),</a> <a href="https://ridebt.org/images/training/safety/2022/September_2022_Safety_Meeting_Agenda.pdf" target="_blank">Agenda&nbsp;</a></p>
+                        
+                        <p>2021</p>
+                        
+                            <p><a href="https://youtu.be/24aMbaKO3CI" target="_blank" rel="noopener">Safety Meeting - Jan 2021 (Video),</a>&nbsp;<a href="https://ridebt.org/images/January_Safety_Meeting_Agenda_2021_PDF.pdf"> Agenda</a></p>
+                            <p><a href="https://youtu.be/NmlUOk3E4jY">Safety Meeting - April 2021 (Video),</a><a href="https://ridebt.org/images/training/safety/Old_Safety_Meetings/April_Safety_Meeting_Agenda_2021.pdf" target="_blank"> Agenda</a></p>
+                            <p><a href="https://youtu.be/1ySzNy46zVE">Safety Meeting - June 2021 (Video),</a> <a href="https://ridebt.org/images/June_Safety_Meeting_Agenda_2021.pdf">Agenda&nbsp;</a></p>
+                            <p><a href="https://youtu.be/CIISMCb4KSk">Safety Metting - August 2021 (Video)</a><a href="file:///M:/Operations/Training/Safety%20Meetings/2022/6-June/June%20Safety%20Meeting%20Agenda%202022.pdf">,</a> <a href="file:///M:/Operations/Training/Safety%20Meetings/2022/6-June/June%20Safety%20Meeting%20Agenda%202022.pdf">Agenda</a>&nbsp;</p>
+                      
+                        <p>2020</p>
+                        
+                            <p><a href="https://youtu.be/EFACw9txIjc">Safety Meeting - Jan 2020 (Video),</a> <a href="https://ridebt.org/images/training/safety/Old_Safety_Meetings/January_Safety_Meeting_Agenda_2020_PDF.pdf" target="_blank">Agenda</a></p>
+                            <p><a href="https://youtu.be/Sr2gXvXMVMg">Safety Meeting - March 2020 (Video)</a>, <a href="https://ridebt.org/images/March_Safety_Meeting_Agenda_2020.pdf">Agenda</a></p>
+                            <p><a href="https://youtu.be/7iug5S9Z7Hg">Safety Meeting - August 2020 (Video)</a>, <a href="https://ridebt.org/images/training/safety/Old_Safety_Meetings/August_Safety_Meeting_Agenda_2020.pdf" target="_blank">Agenda</a></p>
+                            <p><a href="https://youtu.be/KRtiz686X24">Safety Meeting - Sept/Oct 2020 (Video),</a> <a href="https://ridebt.org/images/Sept.Oct_Safety_Meeting_Agenda_2020_PDF.pdf">Agenda </a></p>
+                       
+                        <p>2019</p>
+                        <p><a href="https://ridebt.org/images/safety/Safety_and_Training_Schedule_2019.pdf" target="_blank" rel="noopener" style="color: #0066cc; font-family: &amp;quot; helvetica neue&amp;quot;,helvetica,arial,sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-decoration: underline; text-indent: 0px; text-transform: none; -webkit-text-stroke-width: 0px; white-space: normal; word-spacing: 0px;">2019 Safety Meeting and Training Schedule</a></p>
+                       
+                            <p><a href="https://ridebt.org/images/documents/Safety_Agendas/January_Safety_Meeting_compressed.pdf">Safety Meeting - Jan 2019 (Slides &amp; Notes)</a>, <a href="https://ridebt.org/images/training/safety/Old_Safety_Meetings/January_Safety_Meeting_Agenda_2019_1.pdf" target="_blank">Agenda</a></p>
+                            <p><a href="https://youtu.be/OVO0l_XDFzM">Safety Meeting - Feb 2019 (Video)</a>, <a href="https://ridebt.org/images/February_Safety_Meeting_Agenda_2019_WIP_1.pdf">Agenda</a></p>
+                            <p><a href="https://ridebt.org/images/documents/Safety_Agendas/March_Safety_Meeting_2019.pdf">Safety Meeting - March 2019 (Slides &amp; Notes)</a>, <a href="https://ridebt.org/images/March_Safety_Meeting_Agenda_2019_1.pdf">Agenda</a></p>
+                            <p><a href="https://youtu.be/H852wKdDxBs">Safety Meeting - April 2019 (Video)</a>, <a href="https://ridebt.org/images/April_Safety_Meeting_Agenda_2019_1.pdf">Agenda</a></p>
+                            <p><a href="https://youtu.be/tTOo7WScZfk">Safety Meeting - June 2019 (Video)</a>, <a href="https://ridebt.org/images/training/safety/Old_Safety_Meetings/June_Safety_Meeting_Agenda_2019.pdf" target="_blank">Agenda</a></p>
+                            <p><a href="https://youtu.be/-dozQQz5JbE">Safety Meeting - August 2019 (Video)</a>, <a href="https://ridebt.org/images/training/safety/Old_Safety_Meetings/August_Safety_Meeting_Agenda_2019_PDF.pdf" target="_blank">Agenda</a></p>
+                            <p><a href="https://youtu.be/SjjQT9FG9iw">Safety Meeting - October 2019 (Video)</a>, <a href="https://ridebt.org/images/training/safety/Old_Safety_Meetings/October_Safety_Meeting_Agenda_2019_PDF.pdf" target="_blank">Agenda</a></p>
+                            <p><a href="https://youtu.be/7m3UFIfGqTM">Safety Meeting - November 2019 (Video),</a> <a href="https://ridebt.org/images/training/safety/Old_Safety_Meetings/November_Safety_Meeting_Agenda_2019_PDF.pdf" target="_blank">Agenda</a></p>
+                       
+                        <p>2018</p>
+                       
+                            <p><a href="https://youtu.be/4HhPohjPWI4" target="_blank" rel="noopener">Safety Meeting - Jan&nbsp; 18 (Video)</a>&nbsp;&nbsp; <a href="https://ridebt.org/images/safety/2018-Jan.pdf">Agenda</a></p>
+                            <p><a href="https://youtu.be/x-3zLp77Fbw" target="_blank" rel="noopener">Safety Meeting - Feb&nbsp; 22 (Video)</a>&nbsp; &nbsp;<a href="https://ridebt.org/images/safety/2018-FEB.pdf" target="_blank">Agenda</a></p>
+                            <p><a href="https://youtu.be/-i1fCEvKkRA" target="_blank" rel="noopener">Safety Meeting - March 22 (Video)</a>&nbsp; &nbsp;<a href="https://ridebt.org/images/safety/2018-MAR.pdf" target="_blank">Agenda</a>&nbsp;</p>
+                            <p><a href="https://ridebt.org/images/safety/2018-APR.pdf" target="_blank">Safety Meeting - April&nbsp; 19 (Slides &amp; Notes</a><a href="http://blacksburg.granicus.com/MediaPlayer.php?publish_id=ca481d77-443c-11e8-ab8f-00505691de41" target="_blank" rel="noopener">)</a>&nbsp; <a href="https://ridebt.org/images/safety/2018-APR.pdf" target="_blank">Agenda</a>&nbsp;</p>
+                            <p><a href="https://youtu.be/vY_rLsl4jjQ" target="_blank" rel="noopener">Safety Meeting - May 24 (Video</a><a href="https://ridebt.org/images/safety/SAFETY-MEETING-NOTES-coming-soon.pdf" target="_blank">)</a>&nbsp; &nbsp;<a href="https://ridebt.org/images/training/safety/Old_Safety_Meetings/May_Safety_Meeting_2018.pdf" target="_blank">Agenda</a></p>
+                            <p><a href="https://youtu.be/LmTQPAE8Im8">Safety Meeting - July 2018 (Video)</a>&nbsp; <a href="https://ridebt.org/images/documents/Safety_Agendas/July_Safety_Meeting_Agenda_2018.docx">Agenda</a></p>
+                            <p><a href="https://youtu.be/ZVmc9Mu25Sc">Safety Meeting - August 2018 (Video)</a>&nbsp;&nbsp;<a href="https://ridebt.org/images/training/safety/Old_Safety_Meetings/August_Safety_Meeting_Agenda_2018.pdf" target="_blank"> Agenda</a></p>
+                            <p><a href="https://youtu.be/hLEPIY2Rxy4">Safety Meeting - September 2018 (Video)</a> <a href="https://ridebt.org/images/training/safety/Old_Safety_Meetings/September_Safety_Meeting_Agenda_2018.pdf" target="_blank">Agenda</a></p>
+                            <p><a href="https://youtu.be/SwHwXW-_XWE">Safety Meeting - Oct/Nov 2018 (Video)</a>,&nbsp;<a href="https://ridebt.org/images/training/safety/Old_Safety_Meetings/November_Safety_Meeting_Agenda_2018.pdf" target="_blank"> Agenda</a></p>
+                       
+                        
+
+
+                </div>
+            </div>
+        </h:form>
+
+    </ui:define>
+</ui:composition>
+<!-- Do not enter tags after the composition line since they are ignored by JSF -->
+</html>

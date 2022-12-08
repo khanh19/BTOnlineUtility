@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  - Created by Rob Guldi on 2022.12.7
+  - Copyright © 2022 Robert Guldi. All rights reserved.
+  -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<!-- Do not enter tags before the composition line since they are ignored by JSF -->
+
+<!-- This page is constructed based on the siteTemplate -->
+<ui:composition template="/template/siteTemplate.xhtml">
+    <ui:define name="title">
+        <!-- Set the page title -->
+        <h:outputText value="BT Operator Information" />
+    </ui:define>
+
+    <!-- Create the content for this page below -->
+    <ui:define name="editableContent">
+        <div align="left" style="width:97%">
+
+            <p:menubar>
+                <p:submenu label="Routes and Schedules" target="_blank" outcome="/sched/Sched.xhtml">
+                    <p:submenu label="Route Cards">
+                        <p:submenu label="Full Service">
+                            <p:menuitem value="Weekdays" target="_blank"
+                                        url="http://www.bt4uclassic.org/operatorinfo/Full_Service/FY23%20-%20v.1.2%20-%20Full%20Weekdays.pdf" />
+                            <p:menuitem value="Weekends" target="_blank"
+                                        url="http://www.bt4uclassic.org/operatorinfo/Full_Service/FY23%20-%20v.1.2%20-%20Full%20Weekends.pdf"/>
+                            <p:menuitem value="Alternate-Exams" target="_blank"
+                                        url="http://www.bt4uclassic.org/operatorinfo/Full_Service/FY23%20-%20v.1.2%20-%20Full%20Alternate%20-%20Saturday%20Exam.pdf"/>
+                        </p:submenu>
+                        <p:submenu label="Reduced Service">
+                            <p:menuitem value="Weekdays" target="_blank"
+                                        url="http://www.bt4uclassic.org/operatorinfo/Reduced_Service/FY23%20-%20v.1%20-%20Reduced%20Weekdays.pdf"/>
+                            <p:menuitem value="Weekends" target="_blank"
+                                        url="http://www.bt4uclassic.org/operatorinfo/Reduced_Service/FY23%20-%20v.1%20-%20Reduced%20Weekends.pdf"/>
+                            <p:menuitem value="Alternate-Holidays" target="_blank"
+                                        url="http://www.bt4uclassic.org/operatorinfo/Reduced_Service/FY23%20-%20v.1%20-%20Reduced%20Weekdays%20-%20November%20December%20Holiday%20Schedule.pdf"/>
+                        </p:submenu>
+                        <p:submenu label="Intermediate">
+                            <p:menuitem value="Weekdays" target="_blank"
+                                        url="http://www.bt4uclassic.org/operatorinfo/Intermediate_Service/FY23%20-%20v.1.2%20-%20Intermediate%20Weekdays.pdf"/>
+                            <p:menuitem value="Weekends" target="_blank"
+                                        url="http://www.bt4uclassic.org/operatorinfo/Intermediate_Service/FY23%20-%20v.1.2%20-%20Intermediate%20Weekdays.pdf"/>
+                            <p:menuitem value="Alternate-Commencement" target="_blank"
+                                        url="http://www.bt4uclassic.org/operatorinfo/Reduced_Service/FY23%20-%20v.1%20-%20Reduced%20-%20Commencement%20Saturday.pdf"/>
+                        </p:submenu>
+                        <p:menuitem value="Christiansburg" target="_blank"
+                                    url="http://www.bt4uclassic.org/operatorinfo/Christiansburg_Service/FY23%20-%20v.1%20-%20Christiansburg%20Weekdays%202022.08.15.pdf"/>
+                    </p:submenu>
+                    <p:submenu label="Calendars">
+                        <p:menuitem value="Service Calendar" target="_blank"
+                                    URL="http://www.bt4uclassic.org/operatorinfo/FY23%20FINAL%20Planned%20BT%20Operating%20Calendar%202022.07.14.pdf"/>
+                        <p:menuitem value="Training Calendar" target="_blank"
+                                    URL="http://www.bt4uclassic.org/operatorinfo/FY23%20BT%20Training%20Calendar%202022.07.21.pdf"/>
+                    </p:submenu>
+                    <p:menuitem value="Upcoming Detours" target="_blank" outcome="/sched/Detours.xhtml"/>
+                </p:submenu>
+                <p:submenu label="Shift Pick">
+                    <p:menuitem value="Operator 1" target="_blank"/>
+                    <p:menuitem value="Operator 2 &amp; 3" />
+                </p:submenu>
+                <p:menuitem value="Training" target="_blank" outcome="/training/Training.xhtml"/>
+                <p:menuitem value="Forms and Paperwork" target="_blank" outcome="/paperwork/Paperwork"/>
+            </p:menubar>
+        </div>
+
+        <h:form id="optionForm" align="center">
+            <div align="center" style="width:97%">
+            <h2 class="notice">Route Cards</h2>
+            <p>Current Version: Blacksburg Full &amp; Intermediate FY23 Version 1.2, Reduced FY23 Version 1&nbsp;<em>Updated 10/25/22</em>; Christiansburg FY23 Version 1&nbsp;<em>Updated 8/31/2022</em></p>
+            <table align="center" class="btoper" border="1" style="width: 750px; height: 159px;">
+                <thead>
+                <tr><th colspan="3">Full Service FY23 V. 1.2</th></tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><strong><a href="http://www.bt4uclassic.org/operatorinfo/Full_Service/FY23%20-%20v.1.2%20-%20Full%20Weekdays.pdf">Full Weekdays</a>&nbsp;</strong>(pdf)</td>
+                    <td><a href="http://www.bt4uclassic.org/operatorinfo/Full_Service/FY23%20-%20v.1.2%20-%20Full%20Weekends.pdf" target="_blank" rel="noopener noreferrer"><strong>Full Weekends</strong></a> (pdf)</td>
+                    <td><strong><a href="http://www.bt4uclassic.org/operatorinfo/Full_Service/FY23%20-%20v.1.2%20-%20Full%20Alternate%20-%20Saturday%20Exam.pdf">Full - Alternate (Exam) Saturday</a></strong>&nbsp;(pdf)</td>
+                </tr>
+                </tbody>
+                <thead>
+                <tr><th colspan="3">Reduced Service FY23 V. 1</th></tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><a href="http://www.bt4uclassic.org/operatorinfo/Reduced_Service/FY23%20-%20v.1%20-%20Reduced%20Weekdays.pdf"><strong>Reduced Weekdays</strong></a> (pdf)</td>
+                    <td><a href="http://www.bt4uclassic.org/operatorinfo/Reduced_Service/FY23%20-%20v.1%20-%20Reduced%20Weekends.pdf"><strong>Reduced Weekends</strong></a> (pdf)</td>
+                    <td><strong><a href="http://www.bt4uclassic.org/operatorinfo/Reduced_Service/FY23%20-%20v.1%20-%20Reduced%20Weekdays%20-%20November%20December%20Holiday%20Schedule.pdf"><strong>Reduced Weekdays - Nov./Dec. Holiday</strong></a>&nbsp;</strong>(pdf)</td>
+                </tr>
+                </tbody>
+                <thead>
+                <tr><th colspan="3">Intermediate Service FY23 V. 1.2</th></tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><strong><a href="http://www.bt4uclassic.org/operatorinfo/Intermediate_Service/FY23%20-%20v.1.2%20-%20Intermediate%20Weekdays.pdf" target="_blank" rel="noopener noreferrer">Intermediate Weekdays</a>&nbsp;</strong>(pdf)</td>
+                    <td><strong>&nbsp;</strong></td>
+                    <td><strong><a href="http://www.bt4uclassic.org/operatorinfo/Reduced_Service/FY23%20-%20v.1%20-%20Reduced%20-%20Commencement%20Saturday.pdf">Reduced May Commencement Saturday</a></strong><strong>&nbsp;</strong>(pdf)<strong> FY23 V. 1</strong></td>
+                </tr>
+                </tbody>
+                <thead>
+                <tr><th colspan="3">Christiansburg Service FY23 V. 1</th></tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>&nbsp;<strong><a href="http://www.bt4uclassic.org/operatorinfo/Christiansburg_Service/FY23%20-%20v.1%20-%20Christiansburg%20Weekdays%202022.08.15.pdf">Christiansburg Weekdays FY23 V. 1</a>&nbsp;</strong>(pdf)&nbsp;<em>8/15/22</em></td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                </tbody>
+            </table>
+            <br/>
+            <br/>
+            <h3>BT Event Calendar &amp; Required Classes</h3>
+                <p><strong><a href="http://www.bt4uclassic.org/Training/Web%20Updates/2017%20Required%20Class%20Due.pdf">2018/2019 Required Classes</a></strong></p>
+                <p><strong><a href="http://www.bt4uclassic.org/operatorinfo/FY23%20BT%20Training%20Calendar%202022.07.21.pdf">BT Training Calendar</a>&nbsp;</strong>(pdf) - FY23 July 1, 2022 - June 30, 2023 <em>Updated 7/21/22</em></p>
+                <p><a href="http://www.bt4uclassic.org/operatorinfo/FY23%20FINAL%20Planned%20BT%20Operating%20Calendar%202022.07.14.pdf"><strong>BT Service Calendar</strong></a> (pdf) - FY23 July 1, 2022 - June 30, 2023&nbsp;<em>Updated 7/14/22</em></p>
+            </div>
+        </h:form>
+
+    </ui:define>
+</ui:composition>
+<!-- Do not enter tags after the composition line since they are ignored by JSF -->
+</html>
